@@ -1,0 +1,32 @@
+{include file=member.header.html}
+
+<style>
+.borline td { padding:10px 0px; }
+.ware_list th { text-align:left; }
+.bgwhite { background: #FFFFFF;}
+</style>
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+        {include file=member.submenu.html}
+        <div class="eject_con bgwhite">
+            <div class="add">
+                <form method="post" id="email_form">
+                    <ul>
+                        
+                        <li>
+                            {if $mobile}
+                            您已经绑定手机号：{$mobile}<a href="index.php?app=member&act=mobile_edit" >【<font color="#0000FF">点击此处</font>】</a>可修改
+                        {else}
+                        您未绑定手机号：{$mobile}<a href="index.php?app=member&act=mobile_edit">【<font color="#0000FF">点击此处</font>】</a>可绑定手机号
+                        {/if}
+                        </li>
+                    </ul>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+{include file=footer.html}

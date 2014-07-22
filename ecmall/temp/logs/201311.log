@@ -1,0 +1,25 @@
+Tue, 05 Nov 2013 13:52:05 +0000	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND buyer_id = 1 AND parent_id = 0 AND type = "C"' at line 1
+MySQL Query:SELECT * FROM ecm_pay WHERE order_id =  AND buyer_id = 1 AND parent_id = 0 AND type = "C" 
+Wrong File:  C:\xampp171\htdocs\ecmall\eccore\model\mysql.php[589]	\eccore\model\mysql.php	286
+Tue, 05 Nov 2013 13:52:55 +0000	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND buyer_id = 1 AND parent_id = 0 AND type = "C"' at line 1
+MySQL Query:SELECT * FROM ecm_pay WHERE order_id =  AND buyer_id = 1 AND parent_id = 0 AND type = "C" 
+Wrong File:  C:\xampp171\htdocs\ecmall\eccore\model\mysql.php[589]	\eccore\model\mysql.php	286
+Tue, 05 Nov 2013 13:56:12 +0000	[256]MySQL Error[1054]: Unknown column 'back_money' in 'field list'
+MySQL Query:UPDATE ecm_auction_user SET back_money = 1 WHERE user_id = 1 AND auction_id = 1
+Wrong File:  C:\xampp171\htdocs\ecmall\includes\models\auction_user.model.php[69]	\eccore\model\mysql.php	286
+Tue, 05 Nov 2013 14:00:08 +0000	[256]MySQL Error[1054]: Unknown column 'store_id' in 'where clause'
+MySQL Query:SELECT COUNT(*) as c FROM ecm_ad ad WHERE store_id=0
+Wrong File:  C:\xampp171\htdocs\ecmall\eccore\model\mysql.php[458]	\eccore\model\mysql.php	286
+Tue, 05 Nov 2013 14:00:08 +0000	[256]MySQL Error[1054]: Unknown column 'store_id' in 'where clause'
+MySQL Query:SELECT COUNT(*) as c FROM ecm_ad ad WHERE store_id=0
+Wrong File:  C:\xampp171\htdocs\ecmall\eccore\model\mysql.php[458]	\eccore\model\mysql.php	286
+Tue, 05 Nov 2013 14:20:31 +0000	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc='',sort_order='127' WHERE ad_id = 4' at line 1
+MySQL Query:UPDATE ecm_ad SET title='3333',link='http://www.baidu.com',type='1010',desc='',sort_order='127' WHERE ad_id = 4
+Wrong File:  C:\xampp171\htdocs\ecmall\eccore\model\model.base.php[522]	\eccore\model\mysql.php	286
+Tue, 05 Nov 2013 15:20:35 +0000	[2]include_once(C:\xampp171\htdocs\ecmall/includes/libraries/CommonIndex.php) [<a href='function.include-once'>function.include-once</a>]: failed to open stream: No such file or directory	\eccore\ecmall.php(427) : runtime-created function	1
+Wed, 06 Nov 2013 13:55:07 +0000	[256]MySQL Error[1146]: Table 'ecmall.ecm_recommended' doesn't exist
+MySQL Query:SELECT * FROM ecm_recommended AS rg WHERE store_id = 0 order by recom_id asc LIMIT 1
+Wrong File:  C:\xampp171\htdocs\ecmall\eccore\model\mysql.php[589]	\eccore\model\mysql.php	286
+Wed, 06 Nov 2013 13:55:34 +0000	[256]MySQL Error[1146]: Table 'ecmall.ecm_recommended' doesn't exist
+MySQL Query:SELECT * FROM ecm_recommended  WHERE store_id = 0 order by recom_id asc LIMIT 1
+Wrong File:  C:\xampp171\htdocs\ecmall\eccore\model\mysql.php[589]	\eccore\model\mysql.php	286

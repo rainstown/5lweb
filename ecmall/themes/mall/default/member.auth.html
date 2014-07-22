@@ -1,0 +1,114 @@
+{include file=member.header.html}
+
+<script type="text/javascript">
+$(function(){
+    $('#password_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('validate_right').text('OK!');
+        },
+        rules : {
+            orig_password : {
+                required : true
+            },
+            new_password : {
+                required   : true,
+                minlength  : 6,
+                maxlength  : 20
+            },
+            confirm_password : {
+                required   : true,
+                equalTo    : '#new_password'
+            }
+        },
+        messages : {
+            orig_password : {
+                required : '{$lang.orig_password_empty}'
+            },
+            new_password  : {
+                required   : '{$lang.no_pass}',
+                minlength  : '{$lang.password_length_limit}'
+            },
+            confirm_password : {
+                required   : '{$lang.no_pass}',
+                equalTo    : '{$lang.twice_pass_not_match}'
+            }
+        }
+    });
+});
+</script>
+<style>
+.borline td { padding:10px 0px; }
+.ware_list th { text-align:left; }
+.bgwhite { background: #FFFFFF; }
+
+</style>
+
+
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+        {include file=member.submenu.html}
+        <div class="eject_con bgwhite">
+            <div class="add">
+               <!-- {if $auth.auth_id} -->
+                <form method="post" >
+                        <ul>
+                            <li> 
+                                <h3>审核状态:</h3>
+                                <p> {if $auth.auth_state == 1}审核通过{elseif $auth.auth_state==2}您已被取消会员认证资格{else}正在审核您的资料...{/if} </p>
+                            </li>
+                            
+                            <li><h3>{$lang.auth_name}:</h3>
+                                <p>{$auth.auth_name|escape}</p>
+                            </li>
+                            <li>
+                                <h3>{$lang.owner_card}:</h3>
+                                <p>{$auth.auth_card|escape}</p>
+                            </li>
+                            <li>
+                                <h3>{$lang.auth_addr}:</h3>
+                                <p>{$auth.auth_addr|escape}</p>
+                            </li>
+                            <li><h3>{$lang.bank1_name}:</h3>
+                                <p>{$auth.bank1_name|escape}</p>
+                            </li>
+                            <li>
+                                <h3>{$lang.bank1_user}:</h3>
+                                <p>{$auth.bank1_user|escape}</p>
+                            </li>
+                            <li>
+                                <h3>{$lang.bank1_account}:</h3>
+                                <p>{$auth.bank1_account|escape}</p>
+                            </li>
+                            <li><h3>{$lang.bank2_name}:</h3>
+                                <p>{$auth.bank2_name|escape}</p>
+                            </li>
+                            <li>
+                                <h3>{$lang.bank2_user}:</h3>
+                                <p>{$auth.bank2_user|escape}</p>
+                            </li>
+                            <li>
+                                <h3>{$lang.bank2_account}:</h3>
+                                <p> {$auth.bank2_account|escape} </p>
+                            </li>
+                        </ul>
+                    <div class="submit" style="display:none">
+                        <input class="btn" type="submit" value="{$lang.submit}"/>
+                    </div>
+                </form>
+                <!-- {else} -->
+                 <ul>
+                            <li>
+                                <p>{$lang.has_no_auth}</p>
+                  </li>
+                 <!-- {/if} --> 
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+{include file=footer.html}

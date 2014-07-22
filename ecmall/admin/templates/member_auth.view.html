@@ -1,0 +1,100 @@
+{include file="header.html"}
+<script type="text/javascript">
+//<!CDATA[
+$(function(){
+    $("#reject").click(function(){
+        var reason = $.trim($("#reject_reason").val());
+        if (reason == '')
+        {
+            alert('{$lang.input_reason}');
+            return false;
+        }
+        return true;
+    });
+});
+//]]>
+</script>
+<div id="rightTop">
+  <p>{$lang.member_auth}</p>
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=user">{$lang.manage}</a></li>
+    
+    <li><a class="btn1" href="index.php?app=user&amp;act=add">{$lang.add}</a></li>
+   
+     <li><span>{$lang.member_auth}</span></li>
+  </ul>
+</div>
+<div class="info">
+  <form method="post" enctype="multipart/form-data">
+    <table class="infoTable">
+      <table class="infoTable">
+    <tr>
+        <th class="paddingT15">{$lang.auth_name}: </th>
+        <td class="paddingT15 wordSpacing5">{$store.auth_name|escape}</td>
+        
+    </tr>
+    <tr>
+        <th  class="paddingT15">{$lang.owner_card}: </th>
+        <td  class="paddingT15 wordSpacing5">{$store.auth_card|escape}</td>
+       
+    </tr>
+
+    <tr>
+        <th  class="paddingT15">{$lang.auth_addr}: </th>
+        <td  class="paddingT15 wordSpacing5">{$store.auth_addr|escape}</td>
+        
+    </tr>
+    <tr>
+        <th  class="paddingT15">{$lang.bank1_name}: </th>
+        <td  class="paddingT15 wordSpacing5">{$store.bank1_name|escape}</td>
+        
+    </tr>
+    <tr>
+        <th class="paddingT15">{$lang.bank1_user}: </th>
+        <td class="paddingT15 wordSpacing5">{$store.bank1_user|escape}</td>
+       
+    </tr>
+    <tr>
+        <th  class="paddingT15">{$lang.bank1_account}: </th>
+        <td  class="paddingT15 wordSpacing5">{$store.bank1_account|escape}</td>
+        
+    </tr>
+
+    <tr>
+        <th  class="paddingT15">{$lang.bank2_name}: </th>
+        <td  class="paddingT15 wordSpacing5">{$store.bank2_name|escape}</td>
+        
+    </tr>
+    <tr>
+        <th  class="paddingT15">{$lang.bank2_user}: </th>
+        <td  class="paddingT15">{$store.bank2_user|escape}</td>
+       
+    </tr>
+    <tr>
+        <th  class="paddingT15">{$lang.bank2_account}: </th>
+        <td  class="paddingT15 wordSpacing5">{$store.bank2_account|escape}</td>
+       
+    </tr>
+
+      
+      <tr>
+        <th class="paddingT15">{$lang.uploaded_image}:</th>
+        <td class="paddingT15 wordSpacing5">
+          {if $store.image_1}<a href="{$site_url}/{$store.image_1}" target="_blank">{$lang.view}</a>{/if}
+          {if $store.image_2}<a href="{$site_url}/{$store.image_2}" target="_blank">{$lang.view}</a>{/if}
+          {if $store.image_3}<a href="{$site_url}/{$store.image_3}" target="_blank">{$lang.view}</a>{/if}        </td>
+      </tr>
+      <tr>
+        <th class="paddingT15" valign="top">{$lang.reject_reason}:</th>
+        <td class="paddingT15 wordSpacing5">
+        <textarea name="reject_reason" cols="60" rows="4" id="reject_reason"></textarea></td>
+      </tr>
+      <tr>
+        <th></th>
+        <td class="ptb20"><input class="formbtn" type="submit" name="agree" id="agree" value="{$lang.agree}" />
+          <input class="formbtn" type="submit" name="reject" id="reject" value="{$lang.reject}" /></td>
+      </tr>
+    </table>
+  </form>
+</div>
+{include file="footer.html"} 

@@ -1,0 +1,23 @@
+{include file=header.html}
+
+{include file=top.html}
+<div id="content">
+    <div id="left">
+        {include file=left.html}
+    </div>
+
+    <div id="right">
+        {include file=auction_goods_info.html}
+
+        <a name="module"></a>
+
+        <div class="option_box">
+            <div class="default">{$goods.description|escape:editor}</div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="clear"></div>
+</div>
+
+{include file=footer.html}

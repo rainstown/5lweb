@@ -1,0 +1,160 @@
+{include file=header.html}
+<script src="{lib file=mlselection.js}" charset="utf-8"></script>
+<script src="{lib file=jquery.plugins/jquery.validate.js}" charset="utf-8"></script>
+<style type="text/css">
+.d_inline{display:inline;}
+</style>
+<div class="content">
+<script type="text/javascript">
+//<!CDATA[
+var SITE_URL = "{$site_url}";
+var REAL_SITE_URL = "{$real_site_url}";
+$(function(){
+    regionInit("region");
+
+    $("#member_auth").validate({
+        errorPlacement: function(error, element){
+            var error_td = element.parents('td').next('td');
+            error_td.find('.field_notice').hide();
+            error_td.find('.fontColor3').hide();
+            error_td.append(error);
+        },
+        success: function(label){
+            label.addClass('validate_right').text('OK!');
+        },
+        onkeyup: false,
+        rules: {
+            auth_name: {
+                required: true
+            },
+            image_1: {
+                accept: "jpg|jpeg|png|gif"
+            },
+            image_2: {
+                accept: "jpg|jpeg|png|gif"
+            },
+            image_3: {
+                accept: "jpg|jpeg|png|gif"
+            },
+            notice: {
+                required : true
+            }
+        },
+        messages: {
+            auth_name: {
+                required: '{$lang.input_auth_name}'
+            },
+            image_1: {
+                accept: '{$lang.select_valid_image}'
+            },
+            image_2: {
+                accept: '{$lang.select_valid_image}'
+            },
+            image_3: {
+                accept: '{$lang.select_valid_image}'
+            },
+            notice: {
+                required: '{$lang.notice}'
+            }
+        }
+    });
+});
+//]]>
+</script>
+    <div class="module_common">
+        <h2><b class="set_up_shop" title="SHOP REGISTRATION{$lang.i_want_open_auth}"></b></h2>
+        <div class="wrap">
+            <div class="wrap_child">
+
+                <div class="module_new_shop">
+                    <div class="info_shop">
+                        <form method="post" enctype="multipart/form-data" id="member_auth">
+                        <table>
+                            <tr>
+                                <th>{$lang.auth_name}: </th>
+                                <td class="width7"><input type="text" class="text width7" name="auth_name" value="{$auth.auth_name|escape}"/></td>
+                                <td class="padding3"><span class="fontColor3">*</span> <span class="field_notice">{$lang.note_for_auth_name}</span></td>
+                            </tr>
+                            <tr>
+                                <th>{$lang.owner_card}: </th>
+                                <td><input type="text" class="text width7" name="auth_card" value="{$auth.auth_card|escape}"></td>
+                                <td class="padding3"> <span class="field_notice">{$lang.note_for_owner_card}</span></td>
+                            </tr>
+                            
+                            <tr>
+                                <th>{$lang.auth_addr}: </th>
+                                <td><input type="text" class="text width7" name="auth_addr" value="{$auth.auth_addr|escape}"/></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>{$lang.bank1_name}: </th>
+                                <td><input type="text" class="text width7" name="bank1_name" value="{$auth.bank1_name|escape}"/></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>{$lang.bank1_user}: </th>
+                                <td><input type="text" class="text width7" name="bank1_user" value="{$auth.bank1_user|escape}"/></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>{$lang.bank1_account}: </th>
+                                <td><input type="text" class="text width7" name="bank1_account" value="{$auth.bank1_account|escape}"/></td>
+                                <td></td>
+                            </tr>
+                            
+                            <tr>
+                                <th>{$lang.bank2_name}: </th>
+                                <td><input type="text" class="text width7" name="bank2_name" value="{$auth.bank2_name|escape}"/></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>{$lang.bank2_user}: </th>
+                                <td><input type="text" class="text width7" name="bank2_user" value="{$auth.bank2_user|escape}"/></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>{$lang.bank2_account}: </th>
+                                <td><input type="text" class="text width7" name="bank2_account" value="{$auth.bank2_account|escape}"/></td>
+                                <td></td>
+                            </tr>
+                            
+                            <tr>
+                                <th>{$lang.upload_image}: </th>
+                                <td><input type="file" name="image_1" />
+                                {if $store.image_1}<p style="display:inline;"><a href="{$site_url}/{$store.image_1}" target="_blank">{$lang.view}</a></p>{/if}
+                                </td>
+                                <td class="padding3"><span class="field_notice">{$lang.note_for_image}</span></td>
+                            </tr>
+                            <tr>
+                                <th>{$lang.upload_image}: </th>
+                                <td><input type="file" name="image_2" />
+                                {if $store.image_2}<p style="display:inline;"><a href="{$site_url}/{$store.image_2}" target="_blank">{$lang.view}</a></p>{/if}
+                                </td>
+                                <td class="padding3"><span class="field_notice">{$lang.note_for_image}</span></td>
+                            </tr>
+                            <tr>
+                                <th>{$lang.upload_permit}: </th>
+                                <td><input type="file" name="image_3" />
+                                {if $store.image_3}<p style="display:inline;"><a href="{$site_url}/{$store.image_3}" target="_blank">{$lang.view}</a></p>{/if}
+                                </td>
+                                <td class="padding3"><span class="field_notice">{$lang.note_for_image}</span></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><p class="padding4"><input type="checkbox"{if $store} checked="checked"{/if} name="notice" value="1" id="warning" /> <label for="warning">{$lang.notice}</label></p></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3"><p class="padding4"><input class="btn" type="submit" value="" /></p></td>
+                            </tr>
+                        </table>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+{include file=footer.html}

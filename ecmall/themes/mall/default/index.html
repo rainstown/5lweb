@@ -1,0 +1,421 @@
+{include file=header.html}
+<script type="text/javascript">
+    function setTab(name, cursel, n) {
+        for (i = 1; i <= n; i++) {
+          var menu = document.getElementById(name + i);
+          var con = document.getElementById("con_" + name + "_" + i);
+          menu.className = i == cursel ? "hover": "";
+          con.style.display = i == cursel ? "block": "none";
+        }
+      }
+$(function() {
+	var sWidth = $("#focus").width(); //获取焦点图的宽度（显示面积）
+	var len = $("#focus ul li").length; //获取焦点图个数
+	var index = 0;
+	var picTimer;
+	
+	//以下代码添加数字按钮和按钮后的半透明条，还有上一页、下一页两个按钮
+	var btn = "<div class='btnBg'></div><div class='btn1'>";
+	for(var i=0; i < len; i++) {
+		btn += "<span></span>";
+	}
+	btn += "</div><div class='preNext pre'></div><div class='preNext next'></div>";
+	$("#focus").append(btn);
+	$("#focus .btnBg").css("opacity",0.5);
+
+	//为小按钮添加鼠标滑入事件，以显示相应的内容
+	$("#focus .btn1 span").css("opacity",0.4).mouseenter(function() {
+		index = $("#focus .btn1 span").index(this);
+		showPics(index);
+	}).eq(0).trigger("mouseenter");
+
+	//上一页、下一页按钮透明度处理
+	$("#focus .preNext").css("opacity",0.2).hover(function() {
+		$(this).stop(true,false).animate({"opacity":"0.5"},300);
+	},function() {
+		$(this).stop(true,false).animate({"opacity":"0.2"},300);
+	});
+
+	//上一页按钮
+	$("#focus .pre").click(function() {
+		index -= 1;
+		if(index == -1) {index = len - 1;}
+		showPics(index);
+	});
+
+	//下一页按钮
+	$("#focus .next").click(function() {
+		index += 1;
+		if(index == len) {index = 0;}
+		showPics(index);
+	});
+
+	//本例为左右滚动，即所有li元素都是在同一排向左浮动，所以这里需要计算出外围ul元素的宽度
+	$("#focus ul").css("width",sWidth * (len));
+	
+	//鼠标滑上焦点图时停止自动播放，滑出时开始自动播放
+	$("#focus").hover(function() {
+		clearInterval(picTimer);
+	},function() {
+		picTimer = setInterval(function() {
+			showPics(index);
+			index++;
+			if(index == len) {index = 0;}
+		},4000); //此4000代表自动播放的间隔，单位：毫秒
+	}).trigger("mouseleave");
+	
+	//显示图片函数，根据接收的index值显示相应的内容
+	function showPics(index) { //普通切换
+		var nowLeft = -index*sWidth; //根据index值计算ul元素的left值
+		$("#focus ul").stop(true,false).animate({"left":nowLeft},300); //通过animate()调整ul元素滚动到计算出的position
+		//$("#focus .btn span").removeClass("on").eq(index).addClass("on"); //为当前的按钮切换到选中的效果
+		$("#focus .btn1 span").stop(true,false).animate({"opacity":"0.4"},300).eq(index).stop(true,false).animate({"opacity":"1"},300); //为当前的按钮切换到选中的效果
+	}
+});
+
+function setAuctionTab(elem) {
+	var $elem = $(elem);
+	$elem.parent().children().removeClass('hover');
+	$elem.addClass('hover');
+	var con_id = 'con_' + elem.id;
+	var target = $('#' + con_id);
+	target.parent().children().hide();
+	target.show();
+}
+
+</script>
+ <!--{foreach from=$ad_list_1 item=ad}-->
+<div class="main gg_980_80"><a href="{$ad.link}" title="{$ad.title}" target="_blank"><img src="{$ad.logo}" ></a></div>
+ <!--{foreachelse}-->
+ <div class="main gg_980_80"><img src="{res file=images/adv_1.jpg}"  /></div>
+ <!--{/foreach}-->
+<div class="main">
+
+	<div class="index_help fl" >
+		<i ><a href="{url app=article&code=help}">更多...</a></i>
+		<ul>
+                    <!-- {foreach from=$help_list item=article} -->
+                <li><a {if $article.link}target="_blank"{/if} href="{url app=article&act=view&article_id=$article.article_id}" >{$article.title|escape}</a></li>
+                <!-- {foreachelse} -->
+                  <li>{$lang.no_records}</li>
+                <!-- {/foreach} -->
+                </ul>
+	</div>
+	<div class="index_jiao">
+	<div class="index_banner fl">
+	<!--焦点图片-->
+	
+	<div id="focus">
+		<ul>
+                     <!--{foreach from=$ad_list_2 item=ad}-->
+                      <li><a href="{$ad.link}" title="{$ad.title}"  target="_blank"><img src="{$ad.logo}" ></a></li>
+                     <!--{foreachelse}-->
+                        <li><a href="#"><img src="{res file=images/01.jpg}"  /></a></li>
+			<li><a href="#"><img src="{res file=images/02.jpg}"  /></a></li>
+			<li><a href="#"><img src="{res file=images/03.jpg}" /></a></li>
+			<li><a href="#"><img src="{res file=images/04.jpg}" /></a></li>
+                     <!--{/foreach}-->
+		</ul>
+	</div>
+	<!--焦点图片-->
+	</div>
+	
+	<div class="index_news fl">
+		<div class="index_news_1"><span class="fl">网站公告</span><span class="fr"><a href="{url app=article&code=web}">更多...</a></span></div>
+		<ul>
+                
+		<!-- {foreach from=$web_list item=article} -->
+                <li><a {if $article.link}target="_blank"{/if} href="{url app=article&act=view&article_id=$article.article_id}" >{$article.title|escape}</a></li>
+                <!-- {foreachelse} -->
+                  <li>{$lang.no_records}</li>
+                <!-- {/foreach} -->
+                
+                </ul>
+	
+	</div></div>
+
+</div>
+<div class="clear" ></div>
+<!--三多论坛开始-->
+<div  class="main padding_top"><img src="{res file=images/luntan.jpg}" width="980" height="34"></div>
+<div class="main">
+	<div class="index_lutan fl">
+		<b>最新帖子</b>
+		<ul>
+                    <!-- {foreach from=$dz_news_post item=list} -->
+                    <li><a href="bbs/forum.php?mod=viewthread&tid={$list.tid}" target="_blank">{$list.subject}</a><span>{$list.views}</span></li>
+                    <!-- {/foreach} -->
+                </ul>
+	
+	</div>
+	<div class="index_lutan_1  fl">
+	
+		<!-- 选项卡开始 -->
+     
+        <div class="Menubox1">
+              <ul>
+            <li id="one1" onmouseover="setTab('one',1,1)" >最新回复</li>
+            <li id="one2" onmouseover="setTab('one',2,2)" style="display: none">排行榜</li>
+     
+          </ul>
+            </div>
+        <div class="Contentbox1 ">
+            <div id="con_one_1" class="con_one" style="display:block">  
+          	<ul>
+                    <!-- {foreach from=$dz_rep_post item=list} -->
+                    <li><a href="bbs/forum.php?mod=viewthread&tid={$list.tid}" target="_blank">{$list.subject}</a><span>{$list.replies}</span></li>
+                    <!-- {/foreach} -->
+		</ul>
+          </div>
+              <div id="con_one_2" class="con_one"  style="display:none">	  
+          	<ul>
+		</ul>
+            </div>
+          
+         
+           </div>
+        <!-- 选项卡结束 --> 
+		
+	
+	</div>
+	<div class="index_lutan_2 fl">
+	
+	
+		<!-- 选项卡开始 -->
+     
+        <div class="Menubox2">
+              <ul>
+            <li id="two1" onmouseover="setTab('two',1,1)" >活跃会员</li>
+            <li id="two2" onmouseover="setTab('two',2,2)"  style="display: none">活跃会员</li>
+     
+          </ul>
+            </div>
+        <div class="Contentbox1 Contentbox2">
+              <div id="con_two_1" class="con_two" style="display:block">  
+          	<ul>
+                    
+		</ul>
+            </div>
+              <div id="con_two_2" class="con_two" style="display:none">  
+          	<ul></ul>
+            </div>
+          
+         
+           </div>
+        <!-- 选项卡结束 --> 
+	
+	
+	</div>
+
+</div>
+
+<!--三多论坛结束-->
+<div class="clear" ></div>
+ <!--{foreach from=$ad_list_3 item=ad}-->
+<div class="main gg_980_80"><a href="{$ad.link}" title="{$ad.title}" target="_blank"><img src="{$ad.logo}" ></a></div>
+ <!--{foreachelse}-->
+ <div class="main gg_980_80"><img src="{res file=images/adv_1.jpg}"  /></div>
+ <!--{/foreach}-->
+
+<div  class="main"><img src="{res file=images/luntan_1.jpg}" width="980" height="34"></div>
+<div class="main">
+	<div class="index_pm">
+	
+		<!-- 选项卡开始 -->
+     
+        <div class="Menubox3">
+              <ul>
+         
+			
+			 <li id="three1" onmouseover="setTab('three',1,4)" class="hover">最新竞拍</li>
+            <li id="three2" onmouseover="setTab('three',2,4)">排行榜</li>
+           
+     
+          </ul>
+            </div>
+        <div class="Contentbox3">
+             
+              <div id="con_three_1" >
+			  
+          	<ul>
+          		<!-- {foreach from=$starting_goods_list item=goods} -->
+					<li><b><a href="{url app=goods&act=auction&id=$goods.goods_id&auction_id=$goods.auction_id}" target="_blank">{$goods.goods_name}</a></b>出价{$goods.pay_num}次 | <h2>￥{$goods.curr_price}元</h2></li>
+				<!-- {/foreach} -->
+				</ul>
+          </div>
+		  
+		   <div id="con_three_2" style="display:none" >
+			  
+          	<ul>
+          		<!-- {foreach from=$popular_goods_list item=goods} -->
+					<li><b><a href="{url app=goods&act=auction&id=$goods.goods_id&auction_id=$goods.auction_id}" target="_blank">{$goods.goods_name}</a></b>出价{$goods.pay_num}次 | <h2>￥{$goods.curr_price}元</h2></li>
+				<!-- {/foreach} -->
+				</ul>
+          </div>
+          
+         
+           </div>
+        <!-- 选项卡结束 --> 
+	
+	
+	</div>
+	<div class="index_pm_1 " >
+		<div class="index_pm_right"><div class="index_pm_2"><img src="http://scp.weilearn.com/themes/mall/default/styles/default/images/smal-new-icon.gif"></div>
+		
+		<span class="fl">三多专场---正在进行中</span>
+		<span class="fr"><a href="{url app=auction&act=auction_list&type=O}">查看更多</a></span>
+		<div class="clear"></div>
+		
+		<!-- 选项卡开始 -->
+     
+        <div class="Menubox4">
+            <ul>
+				<!-- {foreach from=$o_auction key=index item=auction} -->
+					<li id="four_{$index}" onmouseover="setAuctionTab(this);">{$auction.name}</li>
+					<!-- {/foreach} -->
+				</ul>
+            </div>
+        <div class="Contentbox4 ">
+              <!-- {foreach from=$o_auction key=index item=auction} -->
+				<div id="con_four_{$index}">
+					<ul>
+						<!-- {foreach from=$goods_list.$index key=goods_id item=goods} -->
+						<li><div>
+								<a href="{url app=goods&act=auction&id=$goods.goods_id&auction_id=$goods.auction_id}" target="_blank"><img src="{$goods.default_image}" width="60" height="60"></a>
+							</div>
+							<i><a href="{url app=goods&act=auction&id=$goods.goods_id&auction_id=$goods.auction_id}" target="_blank">{$goods.goods_name}</a></i><span>{$goods.curr_price|price}元</span>
+						<h2>
+								出价<b>{$goods.pay_num}</b>次
+							</h2>
+							<h3>
+								剩时<b class="goods_last_time">{$goods.last_time}</b>
+							</h3></li>
+						<!-- {/foreach} -->
+					</ul>
+				</div>
+				<!-- {/foreach} -->
+         
+           </div>
+        <!-- 选项卡结束 --> 
+		
+		<div class="clear"></div>
+			<div class="index_pm_right">
+			<span class="fl">个人拍卖---正在进行中</span>
+		<span class="fr"><a href="{url app=auction&act=auction_list&type=P}">查看更多</a></span></div>
+		<div class="clear"></div>
+		
+		
+			<!-- 选项卡开始 -->
+     
+        <div class="Menubox4">
+              <ul>
+           <!-- {foreach from=$p_auction item=auction key=index} -->
+					<li id="five_{$index}" onmouseover="setAuctionTab(this);" <!-- {if $index eq 0} -->class="hover"<!-- {/if} -->>{$auction.name}</li>
+			<!-- {/foreach} -->
+          </ul>
+            </div>
+        <div class="Contentbox4 ">
+             <!-- {foreach from=$p_auction key=index item=auction} -->
+				<div id="con_five_{$index}">
+					<ul>
+					<!-- {foreach from=$goods_list.$index key=goods_id item=goods} -->
+						<li>
+							<div>
+								<a href="{url app=goods&act=auction&id=$goods.goods_id&auction_id=$goods.auction_id}" target="_blank"><img src="{$goods.default_image}" width="60" height="60"></a>
+							</div>
+							<i><a href="{url app=goods&act=auction&id=$goods.goods_id&auction_id=$goods.auction_id}" target="_blank">{$goods.goods_name}</a></i><span>{$goods.curr_price|price}元</span>
+						<h2>
+								出价<b>{$goods.pay_num}</b>次
+							</h2>
+							<h3>
+								剩时<b class="goods_last_time">{$goods.last_time}</b>
+							</h3></li>
+						<!-- {/foreach} -->
+					</ul>
+				</div>
+				<!-- {/foreach} -->
+           </div>
+        <!-- 选项卡结束 --> 
+		
+		
+		
+		
+		</div>
+	
+	
+	</div>
+
+</div>
+<div class="clear"></div>
+ <!--{foreach from=$ad_list_4 item=ad}-->
+<div class="main gg_980_80"><a href="{$ad.link}" title="{$ad.title}" target="_blank"><img src="{$ad.logo}" ></a></div>
+ <!--{foreachelse}-->
+ <div class="main gg_980_80"><img src="{res file=images/adv_1.jpg}"  /></div>
+ <!--{/foreach}-->
+<div  class="main"><img src="{res file=images/luntan_2.jpg}" width="980" height="34"></div>
+<div class="main">
+	<div class="index_dp fl">
+		<b>店铺推荐</b>
+                <div class="tjdp_2 ">
+                    <ul>
+                     <!--{foreach from=$r_stores item=stores name=foo}-->
+                    <li><span><a href="{url app=store&id=$stores.store_id}"><img src="{$stores.store_logo|default:data/system/default_store_logo.gif}" width="46" height="46"></a></span><h2><a href="{url app=store&id=$stores.store_id}">{$stores.store_name}</a></h2><h3>{$stores.region_name}{$stores.user_name}</h3></li>
+                    <!--{foreachelse}-->
+                     <li><span><img src="{res file=images/100_50.jpg}" ></span><h2>{$lang.no_records}</h2></li>
+                    <!--{/foreach}-->
+			
+		</ul>
+                </div>
+	</div>
+	
+	<div class="index_dp_2 fr">
+        <ul>
+        <!--{foreach from=$rec_goods item=goods}-->
+        <li><a href="{url app=goods&id=$goods.goods_id}"><img src="{$goods.default_image}"></a><h2><a href="{url app=goods&id=$goods.goods_id}">{$goods.goods_name}</a></h2><h3>店主：{$goods.owner_name}</h3></li>
+        <!--{foreachelse}-->
+        <li>{$lang.no_records}</li>
+        
+        <!--{/foreach}-->
+        </ul></div>
+
+</div>
+
+<!--{foreach from=$ad_list_5 item=ad}-->
+<div class="main gg_980_80"><a href="{$ad.link}" title="{$ad.title}" target="_blank"><img src="{$ad.logo}" ></a></div>
+ <!--{foreachelse}-->
+ <div class="main gg_980_80"><img src="{res file=images/adv_1.jpg}"  /></div>
+ <!--{/foreach}-->
+
+<div class="main">
+<div class="foot gg_980_80"><ul>
+<!--{foreach from=$navs.footer item=nav}-->
+        <li> <a href="{$nav.link}"{if $nav.open_new} target="_blank"{/if}>{$nav.title|escape}</a></li>
+        <!--{/foreach}-->        
+</ul></div></div>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.Menubox4').each(function() {
+		var $li = $(this).find('li');
+		$li.eq(0).addClass('hover');
+	});
+	$('.Contentbox4').each(function() {
+		$(this).children().hide();
+		$(this).children().eq(0).show();
+	});
+	//计算剩余时间
+	$('.goods_last_time').each(function(){
+		var $elem = $(this);
+		var count = parseInt($elem.text(), 10);
+		var countdown = setInterval(function(){
+			if (count >= 0) {
+				var hour = parseInt(count / 3600, 10);
+				var min = parseInt((count - hour * 3600) / 60, 10);
+				var sec = count - hour * 3600 - min * 60;
+				$elem.text(hour+':'+min+':'+sec);
+			}
+			count--;
+		}, 1000);
+	});
+});
+</script>
+{include file=footer.html}

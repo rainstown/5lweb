@@ -1,0 +1,85 @@
+Wed, 04 Dec 2013 21:57:36 +0800	[256]MySQL Error[1054]: Unknown column 'goods_id' in 'field list'
+MySQL Query:SELECT COUNT(DISTINCT goods_id) as c FROM ecm_collect WHERE user_id='1' AND type='1' AND item_id='store'
+Wrong File:  C:\xampp171\htdocs\ecmall\eccore\model\mysql.php[458]	\eccore\model\mysql.php	286
+Thu, 05 Dec 2013 21:16:35 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for C:\xampp171\htdocs\ecmall/data/crond.lock	\includes\libraries\cron.lib.php	132
+Thu, 05 Dec 2013 21:32:55 +0800	[2]fsockopen() [<a href='function.fsockopen'>function.fsockopen</a>]: unable to connect to :25 (”…”⁄¡¨Ω”∑Ω‘⁄“ª∂Œ ±º‰∫Û√ª”–’˝»∑¥∏¥ªÚ¡¨Ω”µƒ÷˜ª˙√ª”–∑¥”¶£¨¡¨Ω”≥¢ ‘ ß∞‹°£
+)	\includes\libraries\class.smtp.php	89
+Thu, 05 Dec 2013 21:45:33 +0800	[2]fsockopen() [<a href='function.fsockopen'>function.fsockopen</a>]: unable to connect to :25 (”…”⁄¡¨Ω”∑Ω‘⁄“ª∂Œ ±º‰∫Û√ª”–’˝»∑¥∏¥ªÚ¡¨Ω”µƒ÷˜ª˙√ª”–∑¥”¶£¨¡¨Ω”≥¢ ‘ ß∞‹°£
+)	\includes\libraries\class.smtp.php	89
+Thu, 05 Dec 2013 21:45:39 +0800	[2]fsockopen() [<a href='function.fsockopen'>function.fsockopen</a>]: unable to connect to :25 (”…”⁄¡¨Ω”∑Ω‘⁄“ª∂Œ ±º‰∫Û√ª”–’˝»∑¥∏¥ªÚ¡¨Ω”µƒ÷˜ª˙√ª”–∑¥”¶£¨¡¨Ω”≥¢ ‘ ß∞‹°£
+)	\includes\libraries\class.smtp.php	89
+Sun, 08 Dec 2013 19:50:23 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for C:\xampp171\htdocs\ecmall/data/crond.lock	\includes\libraries\cron.lib.php	132
+Mon, 09 Dec 2013 23:14:13 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for C:\xampp171\htdocs\ecmall/data/crond.lock	\includes\libraries\cron.lib.php	132
+Tue, 10 Dec 2013 21:47:24 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for C:\xampp171\htdocs\ecmall/data/crond.lock	\includes\libraries\cron.lib.php	132
+Wed, 11 Dec 2013 21:45:17 +0800	[2]session_start() [<a href='function.session-start'>function.session-start</a>]: Cannot send session cache limiter - headers already sent (output started at C:\xampp171\htdocs\ecmall\index.php:5)	\includes\libraries\session.lib.php	404
+Wed, 11 Dec 2013 23:00:18 +0800	[2]filemtime() [<a href='function.filemtime'>function.filemtime</a>]: stat failed for C:\xampp171\htdocs\ecmall/data/crond.lock	\includes\libraries\cron.lib.php	132
+Thu, 12 Dec 2013 22:55:41 +0800	[2]Invalid argument supplied for foreach()	\app\message.app.php	602
+Thu, 12 Dec 2013 22:56:40 +0800	[2]Division by zero	\includes\ecapp.base.php	775
+Sun, 15 Dec 2013 22:54:38 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE first = 1 ORDER BY dateline DESC limit 10' at line 1
+MySQL Query:select subject, fid, tid, pid, form pre_forum_post WHERE first = 1 ORDER BY dateline DESC limit 10 
+Wrong File:  C:\xampp171\htdocs\ecmall\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Sun, 15 Dec 2013 22:54:54 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'pre_forum_post WHERE first = 1 ORDER BY dateline DESC limit 10' at line 1
+MySQL Query:select subject, fid, tid, pid form pre_forum_post WHERE first = 1 ORDER BY dateline DESC limit 10 
+Wrong File:  C:\xampp171\htdocs\ecmall\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Sun, 15 Dec 2013 22:55:17 +0800	[256]MySQL Error[1146]: Table 'ecmall.pre_forum_post' doesn't exist
+MySQL Query:SELECT subject, fid, tid, pid FROM pre_forum_post WHERE first = 1 ORDER BY dateline DESC limit 10 
+Wrong File:  C:\xampp171\htdocs\ecmall\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Sun, 15 Dec 2013 23:08:22 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.id
+                    INNER JOIN dz.pre_forum_post ON t.pid = r.tid 
+       ' at line 1
+MySQL Query:SELECT t.subject, r.fid, r.tid, r.pid, r.position FROM dz.pre_forum_post r.id
+                    INNER JOIN dz.pre_forum_post ON t.pid = r.tid 
+                    WHERE r.first = 0 GROUP BY r.tid ORDER BY r.dateline DESC limit 10
+Wrong File:  C:\xampp171\htdocs\ecmall\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Sun, 15 Dec 2013 23:11:55 +0800	[256]MySQL Error[1054]: Unknown column 'p.pid' in 'group statement'
+MySQL Query:SELECT t.subject, r.tid, max(r.position) AS position FROM dz.pre_forum_post r
+                    INNER JOIN dz.pre_forum_post t ON t.pid = r.tid WHERE r.first = 0 GROUP BY p.pid ORDER BY r.dateline DESC limit 10 
+Wrong File:  C:\xampp171\htdocs\ecmall\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Sun, 15 Dec 2013 23:17:44 +0800	[256]MySQL Error[1054]: Unknown column 'first' in 'where clause'
+MySQL Query:SELECT subject, views FROM dz.pre_forum_thread WHERE first = 1 ORDER BY dateline DESC limit 10 
+Wrong File:  C:\xampp171\htdocs\ecmall\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Sun, 15 Dec 2013 23:22:07 +0800	[256]MySQL Error[1054]: Unknown column 't.view' in 'field list'
+MySQL Query:SELECT t.subject, p.tid , t.view FROM dz.pre_forum_thread t
+                    INNER JOIN dz.pre_forum_post p ON t.tid = p.tid AND r.first = 1 ORDER BY dateline DESC limit 10 
+Wrong File:  C:\xampp171\htdocs\ecmall\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Sun, 15 Dec 2013 23:22:29 +0800	[256]MySQL Error[1054]: Unknown column 'r.first' in 'on clause'
+MySQL Query:SELECT t.subject, p.tid , t.views FROM dz.pre_forum_thread t
+                    INNER JOIN dz.pre_forum_post p ON t.tid = p.tid AND r.first = 1 ORDER BY dateline DESC limit 10 
+Wrong File:  C:\xampp171\htdocs\ecmall\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Sun, 15 Dec 2013 23:22:52 +0800	[256]MySQL Error[1052]: Column 'dateline' in order clause is ambiguous
+MySQL Query:SELECT t.subject, p.tid , t.views FROM dz.pre_forum_thread t
+                    INNER JOIN dz.pre_forum_post p ON t.tid = p.tid AND p.first = 1 ORDER BY dateline DESC limit 10 
+Wrong File:  C:\xampp171\htdocs\ecmall\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Sun, 15 Dec 2013 23:38:40 +0800	[256]MySQL Error[1146]: Table 'ecmall.bbs_forum_thread' doesn't exist
+MySQL Query:SELECT t.subject, p.tid , t.views FROM bbs_forum_thread t
+                    INNER JOIN bbs_forum_post p ON t.tid = p.tid AND p.first = 1 ORDER BY t.dateline DESC limit 10 
+Wrong File:  C:\xampp171\htdocs\ecmall\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Sun, 15 Dec 2013 23:42:01 +0800	[256]MySQL Error[1146]: Table 'ecmall.forum_thread' doesn't exist
+MySQL Query:SELECT t.subject, p.tid , t.views FROM .forum_thread t
+                    INNER JOIN .forum_post p ON t.tid = p.tid AND p.first = 1 ORDER BY t.dateline DESC limit 10 
+Wrong File:  C:\xampp171\htdocs\ecmall\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Sun, 15 Dec 2013 23:42:24 +0800	[256]MySQL Error[1146]: Table 'ecmall.forum_thread' doesn't exist
+MySQL Query:SELECT t.subject, p.tid , t.views FROM .forum_thread t
+                    INNER JOIN .forum_post p ON t.tid = p.tid AND p.first = 1 ORDER BY t.dateline DESC limit 10 
+Wrong File:  C:\xampp171\htdocs\ecmall\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Sun, 15 Dec 2013 23:42:26 +0800	[256]MySQL Error[1146]: Table 'ecmall.forum_thread' doesn't exist
+MySQL Query:SELECT t.subject, p.tid , t.views FROM .forum_thread t
+                    INNER JOIN .forum_post p ON t.tid = p.tid AND p.first = 1 ORDER BY t.dateline DESC limit 10 
+Wrong File:  C:\xampp171\htdocs\ecmall\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Sun, 15 Dec 2013 23:42:45 +0800	[2]require(../dz/config/config_global.php) [<a href='function.require'>function.require</a>]: failed to open stream: No such file or directory	\app\default.app.php	5
+Sun, 15 Dec 2013 23:46:43 +0800	[256]MySQL Error[1146]: Table 'dz.preforum_thread' doesn't exist
+MySQL Query:SELECT t.subject, p.tid , t.views FROM dz.preforum_thread t
+                    INNER JOIN  dz.preforum_post p ON t.tid = p.tid AND p.first = 1 ORDER BY t.dateline DESC limit 10 
+Wrong File:  C:\xampp171\htdocs\ecmall\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Sun, 29 Dec 2013 23:27:11 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND buyer_id=1' at line 1
+MySQL Query:SELECT *, order_alias.add_time as order_add_time,order_alias.order_id FROM ecm_order order_alias LEFT JOIN ecm_store s ON order_alias.seller_id = s.store_id WHERE order_id= AND buyer_id=1
+Wrong File:  C:\xampp171\htdocs\ecmall\eccore\model\mysql.php[534]	\eccore\model\mysql.php	286
+Sun, 29 Dec 2013 23:27:45 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND buyer_id=1' at line 1
+MySQL Query:SELECT *, order_alias.add_time as order_add_time,order_alias.order_id FROM ecm_order order_alias LEFT JOIN ecm_store s ON order_alias.seller_id = s.store_id WHERE order_id= AND buyer_id=1
+Wrong File:  C:\xampp171\htdocs\ecmall\eccore\model\mysql.php[534]	\eccore\model\mysql.php	286
+Sun, 29 Dec 2013 23:46:34 +0800	[2]file_get_contents(http://ums.zj165.com:8888/sms/Api/Send.do?SpCode=003916&amp;LoginName=hz_dzkj2&amp;Password=dz1333&amp;UserNumber=13333333333&amp;MessageContent=ÊÇ®‰∫é2013-12-29 23:46:34Âú®‰∏âÂ§ö‰πùÂ¶ÇÂÆòÁΩëÁöÑËÆ¢ÂçïÔºö1ËøõË°åÊîØ‰ªòÊìç‰ΩúÔºå‰∫§ÊòìÈ™åËØÅÁ†ÅÔºöl4ow1s) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 505 HTTP Version Not Supported
+	\includes\libraries\checkmobcode.php	34
+Sun, 29 Dec 2013 23:47:56 +0800	[2]file_get_contents(http://ums.zj165.com:8888/sms/Api/Send.do?SpCode=003916&amp;LoginName=hz_dzkj2&amp;Password=dz1333&amp;UserNumber=13333333333&amp;MessageContent=ÊÇ®‰∫é2013-12-29 23:47:56Âú®‰∏âÂ§ö‰πùÂ¶ÇÂÆòÁΩëÁöÑËÆ¢ÂçïÔºö1ËøõË°åÊîØ‰ªòÊìç‰ΩúÔºå‰∫§ÊòìÈ™åËØÅÁ†ÅÔºöe8yjil) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 505 HTTP Version Not Supported
+	\includes\libraries\checkmobcode.php	34
+Sun, 29 Dec 2013 23:49:05 +0800	[2]file_get_contents(http://ums.zj165.com:8888/sms/Api/Send.do?SpCode=003916&amp;LoginName=hz_dzkj2&amp;Password=dz1333&amp;UserNumber=13333333333&amp;MessageContent=ÊÇ®‰∫é2013-12-29 23:49:05Âú®‰∏âÂ§ö‰πùÂ¶ÇÂÆòÁΩëÁöÑËÆ¢ÂçïÔºö1ËøõË°åÊîØ‰ªòÊìç‰ΩúÔºå‰∫§ÊòìÈ™åËØÅÁ†ÅÔºöydrwn4) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: HTTP request failed! HTTP/1.1 505 HTTP Version Not Supported
+	\includes\libraries\checkmobcode.php	34

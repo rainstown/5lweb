@@ -1,0 +1,80 @@
+{include file=member.header.html}
+<script type="text/javascript">
+$(function(){
+    $('#funds_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#funds_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+
+    $('#account_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('validate_right').text('OK!');
+        }
+    });
+});
+</script>
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">{include file=member.submenu.html}
+        <div class="wrap">
+            <div class="public_index table">
+                <!-- {if $auth.auth_id} -->
+                 <form method="post" id="account_form">
+                <table >
+                    <tr class="line tr_bgcolor">
+                        <th class="width2" COLSPAN ='4'>银行一信息</th>
+                    </tr>
+                    <tr class="line tr_bgcolor">
+                        <th class="width2">开户行</th>
+                        <td><input type="text" class="text width5" name="bank1_name" value="{$auth.bank1_name|escape}"/></td>
+                        <th class="width2">账户名称</th>
+                        <td><input type="text" class="text width5" name="bank1_user" value="{$auth.bank1_user|escape}"/></td>
+                    </tr>
+                    <tr class="line tr_bgcolor">
+                        <th class="width2">银行账户</th>
+                        <td><input type="text" class="text width5" name="bank1_account" value="{$auth.bank1_account|escape}"/></td>
+                        <th class="width2"></th>
+                        <td></td>
+                    </tr>
+                    <tr class="line tr_bgcolor">
+                        <th class="width2" COLSPAN ='4'>银行二信息</th>
+                    </tr>
+                    <tr class="line tr_bgcolor">
+                        <th class="width2">开户行</th>
+                        <td><input type="text" class="text width5" name="bank2_name" value="{$auth.bank2_name|escape}"/></td>
+                        <th class="width2">账户名称</th>
+                        <td><input type="text" class="text width5" name="bank2_user" value="{$auth.bank2_user|escape}"/></td>
+                    </tr>
+                    <tr class="line tr_bgcolor">
+                        <th class="width2">银行账户</th>
+                        <td><input type="text" class="text width5" name="bank2_account" value="{$auth.bank2_account|escape}"/></td>
+                        <th class="width2"></th>
+                        <td></td>
+                    </tr>
+                    <tr class="line tr_bgcolor">
+                        <th class="width2">{$lang.check_code}</th>
+                        <td colspan ="3" ><input type="text" class="text width2" name="check_code" value=""/> <span>{$lang.check_code_desc}</span></td>
+                    </tr>
+                     <tr class="line">
+                         <td colspan ="4" class="scarch_order" style="text-align: center"><input type="submit" class="btn" value="{$lang.submit}" /></td>
+                    </tr>
+                </table>
+                 </form>
+                  <!-- {else} -->
+                 <ul>
+                            <li>
+                                <p>{$lang.has_no_auth}</p>
+                  </li>
+                 <!-- {/if} --> 
+                
+            </div>
+        </div>
+    <div class="wrap_bottom"></div>
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+{include file=footer.html}

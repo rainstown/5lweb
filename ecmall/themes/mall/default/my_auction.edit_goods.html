@@ -1,0 +1,153 @@
+<script type="text/javascript">
+//<!CDATA[
+$(function(){
+	$('#auction_goods_start_time, #auction_goods_end_time').datepicker({
+		dateFormat : 'yy-mm-dd'
+	});
+    $('#my_auction_goods_form').validate({
+    	/*
+        errorPlacement: function(error, element){
+            var _message_box = $(element).parent().find('.field_message');
+            _message_box.find('.field_notice').hide();
+            _message_box.append(error);
+        },
+        success       : function(label){
+            label.addClass('validate_right').text('OK!');
+        },*/
+        
+        
+        errorLabelContainer: $('#warning'),
+        invalidHandler: function(form, validator) {
+           var errors = validator.numberOfInvalids();
+           if(errors)
+           {
+               $('#warning').show();
+           }
+           else
+           {
+               $('#warning').hide();
+           }
+        },
+        onkeyup : false,
+        rules : {
+            start_time : {
+                required : true,
+                date   : true
+            },
+            end_time   : {
+                required : true,
+                date: true
+            },
+            min_price : {
+                required : true,
+                digits : true,
+                min : 1,
+            },
+            step_price : {
+            	required : true,
+            	digits : true,
+            	min : 1
+            }
+        },
+        messages : {
+            name : {
+                required : '{$lang.auction_name}{$lang.form_required_true}. '
+            },
+            start_time : {
+            	required : '{$lang.start_time}{$lang.form_required_true}',
+            	date : '{$lang.start_time}{$lang.form_date_true}'
+            },
+            end_time : {
+            	required : '{$lang.end_time}{$lang.form_required_true}',
+            	date : '{$lang.end_time}{$lang.form_date_true}'
+            },
+            min_price : {
+            	required : '{$lang.min_price}{$lang.form_required_true}',
+            	min : '{$lang.min_price}{$lang.form_min_1}',
+            	digits : '{$lang.min_price}{$lang.form_digits_true}'
+            },
+            step_price : {
+            	required : '{$lang.step_price}{$lang.form_required_true}',
+            	min : '{$lang.step_price}{$lang.form_min_1}',
+            	digits : '{$lang.step_price}{$lang.form_digits_true}'
+            }
+        }
+    });
+});
+
+//]]>
+</script>
+<style type="text/css">
+#my_auction_goods_form_ul li h3{width : 100px;}
+</style>
+<ul class="tab">
+    <li class="active">
+    	<!--{if $smarty.get.id}-->
+    	{$lang.auction_goods_edit}
+    	<!--{else}-->
+    	{$lang.auction_goods_add}
+    	<!--{/if}-->
+    </li>
+</ul>
+<div class="eject_con">
+	<div class="add">
+	    <div id="warning"></div>
+	    <form method="post" action="index.php?app=my_auction&act=edit_goods&id={$goods.id}&auction_id={$smarty.get.auction_id}&goods_id={$smarty.get.goods_id}" id="my_auction_goods_form" target="iframe_post">
+	    <ul id="my_auction_goods_form_ul">
+	    	<li>
+	            <h3>{$lang.auction}{$lang.auction_name}:</h3>
+	            <p>
+	            	{$auction.name}
+	            </p>
+	        </li>
+	        <li>
+	            <h3>{$lang.auction_start_time}: </h3>
+	            <p>
+	            	{$auction.start_time}
+	            </p>
+	        </li>
+	        <li>
+	            <h3>{$lang.auction_end_time}: </h3>
+	            <p>
+	            	{$auction.end_time}
+	            </p>
+	        </li>
+	        <li>
+	            <h3>{$lang.goods_name}: </h3>
+	            <p>
+	            	{$goods_name}
+	            </p>
+	        </li>
+	        <li>
+	            <h3>{$lang.start_time}: </h3>
+	            <p>
+	            	<input type="text" class="text width_normal" name="start_time" value="{$goods.start_time|escape}" id="auction_goods_start_time" />
+	            	<label class="field_message"><span class="field_notice">{$lang.goods_start_time_desc}</span></label>
+	            </p>
+	        </li>
+	        <li>
+	            <h3>{$lang.end_time}: </h3>
+	            <p>
+	            	<input type="text" class="text width_normal" name="end_time" value="{$goods.end_time|escape}" id="auction_goods_end_time" />
+	            	<label class="field_message"><span class="field_notice">{$lang.goods_end_time_desc}</span></label>
+	            </p>
+	        </li>
+	        <li>
+	            <h3>{$lang.min_price}:</h3>
+	            <p>
+	            	<input type="text" class="text width_normal"  name="min_price" value="{$goods.min_price}"/>
+	            	<label class="field_message"><span class="field_notice"></span></label>
+	            </p>
+	        </li>
+	        <li>
+	            <h3>{$lang.step_price}:</h3>
+	            <p>
+	            	<input type="text" class="text width_normal"  name="step_price" value="{$goods.step_price}"/>
+	            	<label class="field_message"><span class="field_notice"></span></label>
+	            </p>
+	        </li>
+	    </ul>
+	    <div class="submit"><input type="submit" class="btn" value="<!--{if $smarty.get.id }-->{$lang.auction_goods_edit}<!--{else}-->{$lang.auction_goods_add}<!--{/if}-->" /></div>
+	    </form>
+	</div>
+</div>

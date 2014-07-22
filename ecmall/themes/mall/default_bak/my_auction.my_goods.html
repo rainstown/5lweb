@@ -1,0 +1,90 @@
+{include file=member.header.html}
+<script type="text/javascript">
+</script>
+<div class="content">
+	<div class="totline"></div>
+	<div class="botline"></div>
+	{include file=member.menu.html}
+	<div id="right">
+		{include file=member.submenu.html}
+		<div class="wrap">
+			<!-- {if $can_goods} -->
+			<div title="{$lang.add_goods}" class="eject_btn_two eject_pos1">
+				<b class="ico1"><a href="{url app=my_auction&act=add_goods&id=$smarty.get.id}">{$lang.add_goods}</a></b>
+			</div>
+			<!-- {/if} -->
+			<div class="public_select table">
+				<table id="my_auction_my_goods" server="{$site_url}/index.php?app=my_auction&amp;act=ajax_col">
+					<tr class="line_bold">
+						<th colspan="10">
+							<div class="select_div">
+								
+							</div>
+						</th>
+					</tr>
+					<!--{if $goods_list}-->
+					<tr class="gray" ectype="table_header">
+						<th width="55"></th>
+						<th width="165" column="goods_name" title="{$lang.sort_order}"  class="cursor_pointer"><span ectype="order_by">{$lang.goods_name}</span></th>
+                        <th width="55">{$lang.min_price}</th>
+                        <th width="55">{$lang.step_price}</th>
+                        <th width="55">{$lang.curr_price}</th>
+                        <th width="55">{$lang.pay_num}</th>
+                        <th width="55">{$lang.status}</th>
+                        <th width="70" class="cursor_pointer" column="start_time" title="{$lang.sort_order}"><span ectype="order_by">{$lang.start_time}</span></th>
+                        <th width="70" class="cursor_pointer" column="end_time" title="{$lang.sort_order}"><span ectype="order_by">{$lang.end_time}</span></th>
+                        <th>{$lang.handle}</th>
+					</tr>
+					<!--{/if}-->
+					<!--{foreach from=$goods_list item=goods name=_goods_f}-->
+					<tr class="line<!--{if $smarty.foreach._goods_f.last}--> last_line<!--{/if}-->" ectype="table_item" idvalue="{$goods.goods_id}">
+						<td width="50" class="align2"><a href="{url app=goods&id=$goods.goods_id}" target="_blank"><img src="{$site_url}/{$goods.default_image}" width="50" height="50"  /></a></td>
+						<td width="165">
+							<p class="ware_text">
+								<span class="color2">{$goods.goods_name|escape}</span>
+							</p>
+						</td>
+						<td width="55" class="aligin2">{$goods.min_price}</td>
+                        <td width="55" class="aligin2">{$goods.step_price}</td>
+                        <td width="55" class="align2">{$goods.curr_price}</td>
+                        <td width="55" class="align2">{$goods.pay_num}</td>
+                        <td width="55" class="align2">{$goods.status}</td>
+                        <td width="70" class="align2">{$goods.start_time}</td>
+                        <td width="70" class="align2">{$goods.end_time}</td>
+						<td width="" class="align2">
+							<!-- {if $goods.can_edit} -->
+							<a href="javascript:void(0);" ectype="dialog" dialog_id="my_auction_edit_goods" dialog_title="{$lang.auction_goods_edit}" dialog_width="600" uri="{url app=my_auction&act=edit_goods&goods_id=$goods.goods_id}&auction_id={$smarty.get.id}&id={$goods.id}" class="edit1 float_none">{$lang.auction_goods_edit}</a>
+							<!-- {/if} -->
+						</td>
+					</tr>
+					<!--{foreachelse}-->
+					<tr>
+						<td class="align2 member_no_records padding6" colspan="10">{$lang.$smarty.get.act}{$lang.no_records}</td>
+					</tr>
+					<!--{/foreach}-->
+					<!--{if $goods_list}-->
+					<tr class="line_bold line_bold_bottom">
+						<td colspan="11"></td>
+					</tr>
+					<tr>
+						<th colspan="10">
+							<p class="position2">{include file=member.page.bottom.html}</p>
+						</th>
+					</tr>
+					<!--{/if}-->
+				</table>
+			</div>
+			<div class="wrap_bottom"></div>
+		</div>
+		<div class="clear"></div>
+		<div class="adorn_right1"></div>
+		<div class="adorn_right2"></div>
+		<div class="adorn_right3"></div>
+		<div class="adorn_right4"></div>
+	</div>
+	<div class="clear"></div>
+</div>
+
+
+<iframe name="iframe_post" id="iframe_post" width="0" height="0"></iframe>
+{include file=footer.html} 

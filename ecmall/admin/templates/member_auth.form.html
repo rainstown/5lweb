@@ -1,0 +1,140 @@
+{include file="header.html"}
+<script type="text/javascript" src="index.php?act=jslang"></script>
+<script type="text/javascript">
+//<!CDATA[
+$(function(){
+    regionInit("region");
+
+    $("#tr_close_reason").hide();
+<!--{if $smarty.get.act eq "edit"}-->
+    $(":radio[name='state']").click(function(){
+        if (this.value == 2)
+        {
+            $("#tr_close_reason").show();
+        }
+        else
+        {
+            $("#tr_close_reason").hide();
+        }
+    });
+    $(":radio[name='state']:checked").click();
+<!--{/if}-->
+
+    $('#member_auth_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        onkeyup    : false,
+        rules : {
+            auth_name: {
+                required: true
+            }
+        },
+        messages : {
+            auth_name: {
+                required: '{$lang.owner_name_required}'
+            },
+            store_name: {
+                required: '{$lang.store_name_required}',
+                remote: '{$lang.name_exist}'
+            }
+        }
+    });
+});
+//]]>
+</script>
+<div id="rightTop">
+  <p>{$lang.member_auth}</p>
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=user">{$lang.manage}</a></li>
+    
+    <li><a class="btn1" href="index.php?app=user&amp;act=add">{$lang.add}</a></li>
+   
+    <li><span>{$lang.member_auth}</span></li>
+  </ul>
+</div>
+<div class="info">
+  <form method="post" enctype="multipart/form-data" id="member_auth_form">
+      <input type ="hidden" name="id" value="{$store.auth_id}">
+    <table class="infoTable">
+    <tr>
+        <th class="paddingT15">{$lang.auth_name}: </th>
+        <td class="paddingT15 wordSpacing5"><input type="text" class="infoTableInput2"  name="auth_name" value="{$store.auth_name|escape}"/></td>
+        
+    </tr>
+    <tr>
+        <th  class="paddingT15">{$lang.owner_card}: </th>
+        <td  class="paddingT15 wordSpacing5"><input type="text" class="infoTableInput2"  name="auth_card" value="{$store.auth_card|escape}"></td>
+       
+    </tr>
+
+    <tr>
+        <th  class="paddingT15">{$lang.auth_addr}: </th>
+        <td  class="paddingT15 wordSpacing5"><input type="text" class="infoTableInput2"  name="auth_addr" value="{$store.auth_addr|escape}"/></td>
+        
+    </tr>
+    <tr>
+        <th  class="paddingT15">{$lang.bank1_name}: </th>
+        <td  class="paddingT15 wordSpacing5"><input type="text" class="infoTableInput2"  name="bank1_name" value="{$store.bank1_name|escape}"/></td>
+        
+    </tr>
+    <tr>
+        <th class="paddingT15">{$lang.bank1_user}: </th>
+        <td class="paddingT15 wordSpacing5"><input type="text" class="infoTableInput2"  name="bank1_user" value="{$store.bank1_user|escape}"/></td>
+       
+    </tr>
+    <tr>
+        <th  class="paddingT15">{$lang.bank1_account}: </th>
+        <td  class="paddingT15 wordSpacing5"><input type="text" class="infoTableInput2"  name="bank1_account" value="{$store.bank1_account|escape}"/></td>
+        
+    </tr>
+
+    <tr>
+        <th  class="paddingT15">{$lang.bank2_name}: </th>
+        <td  class="paddingT15 wordSpacing5"><input type="text" class="infoTableInput2"  name="bank2_name" value="{$store.bank2_name|escape}"/></td>
+        
+    </tr>
+    <tr>
+        <th  class="paddingT15">{$lang.bank2_user}: </th>
+        <td  class="paddingT15"><input type="text" class="infoTableInput2"  name="bank2_user" value="{$store.bank2_user|escape}"/></td>
+       
+    </tr>
+    <tr>
+        <th  class="paddingT15">{$lang.bank2_account}: </th>
+        <td  class="paddingT15 wordSpacing5"><input type="text" class="infoTableInput2"  name="bank2_account" value="{$store.bank2_account|escape}"/></td>
+       
+    </tr>
+
+      
+      <tr>
+        <th class="paddingT15"> <label for="state">{$lang.state}:</label></th>
+        <td class="paddingT15 wordSpacing5">{html_radios name="auth_state" options=$auth_states checked=$store.auth_state}</td>
+      </tr>
+      <tr id="tr_close_reason">
+          <th class="paddingT15" valign="top">{$lang.close_reason}:</th>
+          <td class="paddingT15 wordSpacing5"><label for="close_reason"></label>
+              <textarea name="close_reason" id="close_reason"></textarea></td>
+      </tr>
+
+    
+      <tr>
+        <th class="paddingT15">{$lang.uploaded_image}:</th>
+        <td class="paddingT15 wordSpacing5">
+          {if $store.image_1}<a href="{$site_url}/{$store.image_1}" target="_blank">{$lang.view}</a>{/if}
+          {if $store.image_2}<a href="{$site_url}/{$store.image_2}" target="_blank">{$lang.view}</a>{/if}
+          {if $store.image_3}<a href="{$site_url}/{$store.image_3}" target="_blank">{$lang.view}</a>{/if}        </td>
+      </tr>
+
+      <tr>
+        <th></th>
+        <td class="ptb20"><input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+          <input class="formbtn" type="reset" name="Reset" value="{$lang.reset}" /></td>
+      </tr>
+    </table>
+  </form>
+</div>
+{include file="footer.html"}

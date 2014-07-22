@@ -1,0 +1,15 @@
+增加认证会员 才能开店
+
+	1、增加数据表结构 
+		MemberauthModel
+	2、修改memberModel
+			增加member_auth 关系
+	3 修改 ECBaseApp， 执行获取		
+			_get_detail
+			
+
+增加后台设置，是否允许非认证会员开店;
+	1、修改模板：admin/templates/setting.store.setting.html
+	2、语言包.
+	3、setting.app.php
+	

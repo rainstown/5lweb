@@ -1,0 +1,89 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#search_time_from, #search_time_to').datepicker({
+		dateFormat : 'yy-mm-dd'
+	});
+});
+</script>
+<div id="rightTop">
+	<p>{$lang.auction}</p>
+	<ul class="subnav">
+		<li><span>{$lang.manage}</span></li>
+		<li><a class="btn1" href="index.php?app=auction&amp;act=edit">{$lang.add}</a></li>
+	</ul>
+</div>
+
+<div class="mrightTop">
+	<div class="fontl">
+		<form method="get">
+			<div class="left">
+				<input type="hidden" name="app" value="auction" /> 
+				<input type="hidden" name="act" value="index" /> {$lang.auction_name}: 
+				<input class="queryInput" type="text" name="name" value="{$smarty.get.name|escape}" /> 
+				<select class="querySelect" name="status">
+					<option value="">{$lang.query_status}</option> 
+					<!-- {html_options options=$status_options selected=$smarty.get.status} -->
+				</select>
+				<select class="querySelect" name="field">
+					<!-- {html_options options=$search_options selected=$smarty.get.field} -->
+                </select>:
+               	<input class="queryInput" type="text" value="{$query.search_time_from}" id="search_time_from" name="search_time_from" class="pick_date" />
+                -&nbsp;&nbsp;&nbsp;<input class="queryInput" type="text" value="{$query.search_time_to}" id="search_time_to" name="search_time_to" class="pick_date" />
+				<input type="submit" class="formbtn" value="{$lang.query}" />
+			</div>
+			<!--{if $filtered}-->
+			<a class="left formbtn1" href="index.php?app=auction">{$lang.cancel_query}</a>
+			<!--{/if}-->
+		</form>
+	</div>
+	<div class="fontr">{include file=page.top.html}</div>
+</div>
+<div class="tdare">
+	<table width="100%" cellspacing="0" class="dataTable">
+		<!--{if $auctions}-->
+		<tr class="tatr1">
+			<td width="20" class="firstCell"></td>
+			<td>{$lang.auction_name}</td>
+			<td><span ectype="order_by" fieldname="status">{$lang.status}</span></td>
+			<td><span ectype="order_by" fieldname="start_time">{$lang.start_time}</span></td>
+			<td><span ectype="order_by" fieldname="end_time">{$lang.end_time}</span></td>
+			<td><span ectype="order_by" fieldname="sign_start">{$lang.sign_start_time}</span></td>
+			<td><span ectype="order_by" fieldname="sign_end">{$lang.sign_end_time}</span></td>
+			<td><span ectype="order_by" fieldname="create_time">{$lang.create_time}</span></td>
+			<td>{$lang.handler}</td>
+		</tr>
+		<!--{/if}-->
+		<!--{foreach from=$auctions item=auction}-->
+		<tr class="tatr2">
+			<td class="firstCell"></td>
+			<td>{$auction.name|escape}</td>
+			<td>{$auction.status_name|escape}</td>
+			<td>{$auction.start_time}</td>
+			<td>{$auction.end_time}</td>
+			<td>{$auction.sign_start}</td>
+			<td>{$auction.sign_end}</td>
+			<td>{$auction.create_time}</td>
+			<td>
+				<!-- {if $auction.has_user} -->
+				<a href="index.php?app=auction&act=apply_list&id={$auction.auction_id}">{$lang.approve_apply}</a>
+				<!-- {/if} -->
+				<a href="{url app=auction&act=user&id=$auction.auction_id}">{$lang.query_auction_user}</a>
+				<a href="index.php?app=auction&amp;act=edit&amp;id={$auction.auction_id}">{$lang.edit}</a>
+				<a href="index.php?app=auction&amp;act=view&amp;id={$auction.auction_id}">{$lang.view}</a>
+			</td>
+		</tr>
+		<!--{foreachelse}-->
+		<tr class="no_data">
+			<td colspan="10">{$lang.no_data}</td>
+		</tr>
+		<!--{/foreach}-->
+	</table>
+	<!--{if $auctions}-->
+	<div id="dataFuncs">
+		<div class="pageLinks">{include file=page.bottom.html}</div>
+		<div class="clear"></div>
+	</div>
+	<!--{/if}-->
+</div>
+{include file="footer.html"}

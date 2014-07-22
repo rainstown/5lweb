@@ -1,0 +1,92 @@
+{include file=header.html}
+{include file=curlocal.html}
+<style type="text/css">
+#auction_apply li {font-size: 14px; line-height: 24px;}
+#auction_apply {padding: 5px 10px; color: #000;}
+#auction_apply li label {width:210px; display:inline-block;}
+</style>
+<script type="text/javascript">
+function cancel_apply() {
+	window.history.go(-1);
+}
+</script>
+<div class="content">
+    <div class="left">
+        <div class="module_sidebar">
+            <h2><b>{$lang.offical_auction_list}</b></h2>
+            <div class="wrap">
+                <div class="wrap_child">
+                    <div class="classify_list">
+                        <ul>
+                            <li><a href="{url app=auction&act=auction_list&type=O}">{$lang.all}</a></li>
+                            <li><a href="{url app=auction&act=auction_list&type=O&query=process}">{$lang.inprocess}</a></li>
+                            <li><a href="{url app=auction&act=auction_list&type=O&query=apply}">{$lang.applying}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h2><b>{$lang.personal_auction_list}</b></h2>
+            <div class="wrap">
+                <div class="wrap_child">
+                    <div class="side_textlist">
+                        <ul>
+                            <li><a href="{url app=auction&act=auction_list&type=P}">{$lang.all}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="right">
+    	<div class="shop_text_list">
+            <div class="ornament1"></div>
+            <div class="ornament2"></div>
+            <table>
+                <tbody><tr>
+                    <th class="align1">
+                        <div class="table_title">
+                        </div>
+                    </th>
+                </tr>
+                <tr>
+                   <td>
+                   <form name="auction_apply" id="auction_apply" method="post" action="{url app=auction&act=apply}">
+    		<input type="hidden" name="auction_id" value="{$auction.auction_id}" />
+	        <ul id="auction_apply">
+	        	<li>
+	        		<label>{$lang.auction_name}:</label>
+	        		<span>{$auction.name}</span>
+	        	</li>
+	        	<!-- {if $auction.show_time} -->
+	        	<li>
+	        		<label>{$lang.sign_start_time}:</label>
+	        		<span>{$auction.sign_start}</span>
+	        	</li>
+	        	<li><label>{$lang.sign_end_time}:</label><span>{$auction.sign_end}</span></li>
+	        	<li><label>{$lang.start_time}:</label><span>{$auction.start_time}</span></li>
+	        	<li><label>{$lang.end_time}:</label><span>{$auction.end_time}</span></li>
+	        	<!-- {/if} -->
+	        	<li><label>{$lang.keep_money}:</label><span>{$auction.keep_money|price}{$lang.rmb}</span></li>
+	        	<li><label>{$lang.put_money}:</label><span>{$auction.put_money|price}{$lang.peer_rmb}</span></li>
+	        	<li><label>{$lang.trade_money}:</label><span>{$auction.trade_money|price}{$lang.peer_rmb}</span></li>
+	        	<li><label>{$lang.keep_percent_detail}:</label><span>{$auction.keep_percent}%</span></li>
+	        </ul>
+	        <ul class="ware_btn">
+	        	<li title="{$lang.apply}" style="float: left; margin: 10px;">
+	        		<button type="submit" class="bt2">{$lang.apply}</button>
+	        	</li>
+	        	<li title="{$lang.cancel}" style="float: left; margin: 10px;">
+	        		<button type="button" onclick="cancel_apply();" class="bt3">{$lang.cancel}</button>
+	        	</li>
+	        </ul>
+    	</form>
+                   </td>
+                </tr>
+                            </tbody></table>
+        </div>
+    	
+    </div>
+</div>
+{include file=footer.html}

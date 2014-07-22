@@ -1,0 +1,63 @@
+{include file=header.html}
+{include file=curlocal.html}
+<style type="text/css">
+#auction_apply li {font-size: 14px; line-height: 24px;}
+</style>
+<script type="text/javascript">
+function cancel_apply() {
+	window.history.go(-1);
+}
+</script>
+<div class="content">
+    <div class="left">
+        <div class="module_sidebar">
+            <h2><b>{$lang.offical_auction_list}</b></h2>
+            <div class="wrap">
+                <div class="wrap_child">
+                    <div class="classify_list">
+                        <ul>
+                            <li><a href="{url app=auction&act=auction_list&type=O}">{$lang.all}</a></li>
+                            <li><a href="{url app=auction&act=auction_list&type=O&query=process}">{$lang.inprocess}</a></li>
+                            <li><a href="{url app=auction&act=auction_list&type=O&query=apply}">{$lang.applying}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h2><b>{$lang.personal_auction_list}</b></h2>
+            <div class="wrap">
+                <div class="wrap_child">
+                    <div class="side_textlist">
+                        <ul>
+                            <li><a href="{url app=auction&act=auction_list&type=P}">{$lang.all}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="right">
+    	<form name="auction_apply" id="auction_apply" method="post" action="{url app=auction&act=apply}">
+    		<input type="hidden" name="auction_id" value="{$auction.auction_id}" />
+	        <ul id="auction_apply">
+	        	<li>{$lang.auction_name}:{$auction.name}</li>
+	        	<!-- {if $auction.show_time} -->
+	        	<li>{$lang.sign_start_time}:{$auction.sign_start}</li>
+	        	<li>{$lang.sign_end_time}:{$auction.sign_end}</li>
+	        	<li>{$lang.start_time}:{$auction.start_time}</li>
+	        	<li>{$lang.end_time}:{$auction.end_time}</li>
+	        	<!-- {/if} -->
+	        	<li>{$lang.keep_money}:{$auction.keep_money}</li>
+	        	<li>{$lang.put_money}:{$auction.put_money}{$lang.peer_rmb}</li>
+	        	<li>{$lang.trade_money}:{$auction.trade_money}{$lang.peer_rmb}</li>
+	        	<li>{$lang.keep_percent_detail}:{$auction.keep_percent}%</li>
+	        </ul>
+	        <ul class="ware_btn">
+	        	<li title="{$lang.apply}" style="float: left; margin-right: 10px;"><button type="submit">{$lang.apply}</button></li>
+	        	<li title="{$lang.cancel}" style="float: left;"><button type="button" onclick="cancel_apply();">{$lang.cancel}</button></li>
+	        </ul>
+    	</form>
+    </div>
+</div>
+{include file=footer.html}

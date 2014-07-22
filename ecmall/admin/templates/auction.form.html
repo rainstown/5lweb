@@ -1,0 +1,170 @@
+{include file="header.html"}
+<script type="text/javascript">
+	$(function() {
+		$('#auction_form').validate({
+			errorPlacement : function(error, element) {
+				$(element).next('.field_notice').hide();
+				$(element).after(error);
+			},
+			success : function(label) {
+				label.addClass('right').text('OK!');
+			},
+			onkeyup : false,
+			rules : {
+				name : { required : true, byteRange : [ 1, 100, '{$charset}' ],},
+				start_time : { required: true, date: true },
+				end_time : { required : true, date : true },
+				sign_start : { required : true, date : true},
+				sign_end : { required : true, date : true },
+				put_money : {required : true, digits: true, min: 1},
+				trade_money : {required : true, digits : true, min : 1 },
+				keep_money : {required : true, digits : true, min : 1},
+				keep_percent : {required : true, digits : true, min : 1, max : 100}
+			},
+			messages : {
+				name : {
+					required : '{$lang.name_not_empty}',
+					byteRange : '{$lang.name_length_limit}'
+				},
+				start_time : {
+					required : '{$lang.start_time_required}',
+					date : '{$lang.date_error}'
+				},
+				end_time : {
+					required : '{$lang.end_time_required}',
+					date : '{$lang.date_error}',
+				},
+				sign_end : {
+					required : '{$lang.sign_end_required}',
+					date : '{$lang.date_error}'
+				},
+				sign_start : {
+					required : '{$lang.sign_start_required}',
+					date : '{$lang.date_error}'
+				},
+				put_money : {
+					required : '{$lang.put_money_required}',
+					digits : '{$lang.form_digits_true}',
+					min : '{$lang.form_min_one}'
+				},
+				trade_money : {
+					required : '{$lang.trade_money_required}',
+					digits : '{$lang.form_digits_true}',
+					min : '{$lang.form_min_one}'
+				},
+				keep_money : {
+					required : '{$lang.form_required_true}',
+					digits : '{$lang.form_digits_true}',
+					min : '{$lang.form_min_one}'
+				},
+				keep_percent : {
+					required : '{$lang.form_required_true}',
+					digits : '{$lang.form_digits_true}',
+					max : '{$lang.percent_max}',
+					min : '{$lang.form_min_one}'
+				}
+			}
+		});
+		$('#start_time, #end_time, #sign_start, #sign_end').datepicker({
+			dateFormat : 'yy-mm-dd'
+		});
+	});
+</script>
+<div id="rightTop">
+	<p>{$lang.auction}</p>
+	<ul class="subnav">
+		<li><a class="btn1" href="index.php?app=auction">{$lang.manage}</a></li>
+		<li>
+			<!-- {if $auction.auction_id} -->
+			 <a class="btn1" href="index.php?app=auction&amp;act=edit">{$lang.add}</a> 
+			 <!-- {else} -->
+			<span>{$lang.add}</span> 
+			<!-- {/if} -->
+		</li>
+	</ul>
+</div>
+<div class="info">
+	<form method="post" action="{url app=auction&act=edit&id=$auction.auction_id}" id="auction_form">
+		<input type="hidden" name="auction_id" value="{$auction.auction_id}" />
+		<table class="infoTable">
+			<tr>
+				<th class="paddingT15">{$lang.auction_name}:</th>
+				<td class="paddingT15 wordSpacing5">
+					<input class="infoTableInput" id="name" type="text" name="name" value="{$auction.name|escape}" style="width: 350px;" /> 
+					<label class="field_notice">{$lang.auction_name}</label>
+				</td>
+			</tr>
+			<tr>
+				<th class="paddingT15">{$lang.start_time}:</th>
+				<td class="paddingT15 wordSpacing5">
+					<input class="infoTableInput2" name="start_time" type="text" id="start_time" value="{$auction.start_time}" />
+				</td>
+			</tr>
+			<tr>
+				<th class="paddingT15">{$lang.end_time}:</th>
+				<td class="paddingT15 wordSpacing5">
+					<input class="infoTableInput2" name="end_time" type="text" id="end_time" value="{$auction.end_time}" />
+				</td>
+			</tr>
+			<tr>
+				<th class="paddingT15">{$lang.sign_start_time}:</th>
+				<td class="paddingT15 wordSpacing5">
+					<input class="infoTableInput2" name="sign_start" type="text" id="sign_start" value="{$auction.sign_start|escape}" class="pick_date" />
+				</td>
+			</tr>
+			<tr>
+				<th class="paddingT15">{$lang.sign_end_time}:</th>
+				<td class="paddingT15 wordSpacing5">
+					<input class="infoTableInput2" name="sign_end" type="text" id="sign_end" value="{$auction.sign_end|escape}" class="pick_date" />
+				</td>
+			</tr>
+
+			<tr>
+				<th class="paddingT15">{$lang.status}:</th>
+				<td class="paddingT15 wordSpacing5">
+					<select name="status">
+						<!-- {html_options options=$status_options selected=$auction.status} -->
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th class="paddingT15">{$lang.keep_money}:</th>
+				<td class="paddingT15 wordSpacing5">
+					<input class="infoTableInput2" name="keep_money" type="text" id="keep_money" value="{$auction.keep_money}" />
+				</td>
+			</tr>
+			<tr>
+				<th class="paddingT15">{$lang.put_money}({$lang.peer_rmb}):</th>
+				<td class="paddingT15 wordSpacing5">
+					<input class="infoTableInput2" name="put_money" type="text" id="put_money" value="{$auction.put_money}" />
+				</td>
+			</tr>
+			<tr>
+				<th class="paddingT15">{$lang.trade_money}({$lang.peer_rmb}):</th>
+				<td class="paddingT15 wordSpacing5">
+					<input class="infoTableInput2" name="trade_money" type="text" id="trade_money" value="{$auction.trade_money}" />
+				</td>
+			</tr>
+			<tr>
+				<th class="paddingT15">{$lang.keep_percent}(%):</th>
+				<td class="paddingT15 wordSpacing5">
+					<input class="infoTableInput2" name="keep_percent" type="text" id="keep_percent" value="{$auction.keep_percent}">
+				</td>
+			</tr>
+			<tr>
+				<th class="paddingT15">{$lang.description}:</th>
+				<td class="paddingT15 wordSpacing5">
+					<textarea class="" name="description" id="description">{$auction.description}</textarea>
+				</td>
+			</tr>
+			<tr>
+				<th></th>
+				<td class="ptb20">
+					<input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" /> 
+					<input class="formbtn" type="reset" name="Reset" value="{$lang.reset}" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+{include file="footer.html"}

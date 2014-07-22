@@ -1,0 +1,31 @@
+{include file=member.header.html}
+<style>
+.borline td { padding:10px 0px; }
+.ware_list th { text-align:left; }
+.bgwhite { background: #FFFFFF;}
+</style>
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+        {include file=member.submenu.html}
+        <div class="eject_con bgwhite">
+            <div class="add">
+                <form method="post" id="account_form">
+                    <ul>
+                        <li><h3>{$lang.my_account}:</h3>
+                            <h3>{$bank_info.money|price}</h3>
+                        </li>
+                        <li><h3>{$lang.caution_money}:</h3>
+                            <h3>{$bank_info.caution_money|price}</h3>
+                        </li>
+                        <li><h3><a href="index.php?app=account&act=apply">修改支付密码</a></h3>
+                        </li>
+                    </ul>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+{include file=footer.html}

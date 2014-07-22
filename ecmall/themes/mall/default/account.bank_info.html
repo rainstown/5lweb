@@ -1,0 +1,125 @@
+{include file=member.header.html}
+<script src="{lib file=jsAddress.js}" charset="utf-8"></script>
+<script type="text/javascript">
+$(function(){
+    $('#funds_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#funds_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+
+    $('#account_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('validate_right').text('OK!');
+        },
+        rules : {
+            q1 : {
+                required   : true
+            },
+            bank1_name : {
+                required   : true
+            },
+            bank1_user : {
+                required   : true
+            },     
+            bank1_account : {
+                required   : true
+            },   
+            check_code : {
+                required   : true
+            }
+        },
+        messages : {
+            q1  : {
+                required   : '开户行必填',
+            },
+            bank1_name : {
+                required   : '开户行必填',
+            },
+            bank1_user  : {
+                required   : '账户名称',
+            },
+            bank1_account  : {
+                required   : '银行账户必填',
+            },
+            check_code  : {
+               required   : '{$lang.check_code_error}'
+            }
+        }
+    });
+});
+</script>
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">{include file=member.submenu.html}
+        <div class="wrap">
+            <div class="public_index table">
+                <!-- {if $auth.auth_id} -->
+                 <form method="post" id="account_form">
+                <table >
+                    <tr class="line tr_bgcolor">
+                        <th class="width2" COLSPAN ='4'>银行一信息</th>
+                    </tr>
+                    <tr class="line tr_bgcolor">
+                        <th class="width2">开户行</th>
+                        <td colspan='3'>
+                            <select name='s1'  id="cmbProvince1"></select><select name='c1'  id="cmbCity1"></select><select name='q1'  id="cmbArea1"></select>
+                                    
+                            <input type="text" class="text width5" name="bank1_name" value="{$auth.bank1_name|escape}"/></td>
+                    </tr>
+                    <tr class="line tr_bgcolor">
+                         <th class="width2">账户名称</th>
+                        <td><input type="text" class="text width5" name="bank1_user" value="{$auth.bank1_user|escape}"/></td>
+                   
+                        <th class="width2">银行账户</th>
+                        <td><input type="text" class="text width5" name="bank1_account" value="{$auth.bank1_account|escape}"/></td>
+                        
+                    </tr>
+                    <tr class="line tr_bgcolor">
+                        <th class="width2" COLSPAN ='4'>银行二信息</th>
+                    </tr>
+                     <tr class="line tr_bgcolor">
+                        <th class="width2">开户行</th>
+                        <td colspan='3'>
+                            <select name='s2'  id="cmbProvince2"></select><select name='c2'  id="cmbCity2"></select><select name='q2'  id="cmbArea2"></select>
+                                    
+                            <input type="text" class="text width5" name="bank2_name" value="{$auth.bank2_name|escape}"/></td>
+                    </tr>
+                   
+                    <tr class="line tr_bgcolor">
+                        <th class="width2">账户名称</th>
+                        <td><input type="text" class="text width5" name="bank2_user" value="{$auth.bank2_user|escape}"/></td>
+                        <th class="width2">银行账户</th>
+                        <td><input type="text" class="text width5" name="bank2_account" value="{$auth.bank2_account|escape}"/></td>
+                        
+                    </tr>
+                    <tr class="line tr_bgcolor">
+                        <th class="width2">{$lang.check_code}</th>
+                        <td colspan ="3" ><input type="text" class="text width2" name="check_code" value=""/> <span>{$lang.check_code_bank_info}</span></td>
+                    </tr>
+                     <tr class="line">
+                         <td colspan ="4" class="scarch_order" style="text-align: center"><input type="submit" class="btn" value="{$lang.submit}" /></td>
+                    </tr>
+                </table>
+                 </form>
+                  <!-- {else} -->
+                 <ul>
+                            <li>
+                                <p>{$lang.has_no_auth}</p>
+                  </li>
+                 <!-- {/if} --> 
+                
+            </div>
+        </div>
+    <div class="wrap_bottom"></div>
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+<script type="text/javascript">
+ addressInit('cmbProvince1', 'cmbCity1', 'cmbArea1', '{$auth.s1}', '{$auth.c1}', '{$auth.q1}');
+ addressInit('cmbProvince2', 'cmbCity2', 'cmbArea2', '{$auth.s2}', '{$auth.c2}', '{$auth.q2}');
+</script>
+{include file=footer.html}

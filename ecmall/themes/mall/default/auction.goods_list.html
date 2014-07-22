@@ -1,0 +1,99 @@
+{include file=header.html}
+<script type="text/javascript" src="{lib file=search_goods.js}" charset="utf-8"></script>
+<script type="text/javascript">
+var upimg   = '{res file=images/up.gif}';
+var downimg = '{res file=images/down.gif}';
+imgUping = new Image();
+imgUping.src = upimg;
+</script>
+
+{include file=curlocal.html}
+
+<style type="text/css">
+#auction_goods_list .squares li{height: 300px;}
+</style>
+<div class="content">
+    <!--{if $goods_list}-->
+    <div class="left">
+        <div class="module_sidebar">
+            <h2><b></b></h2>
+            <div class="wrap">
+                <div class="wrap_child">
+                    <div class="side_textlist">
+                        <ul ectype="ul_category">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+    <div class="right">
+        <div class="shop_con_list" id="auction_goods_list">
+            <h2>
+                <div class="ornament1"></div>
+                <div class="ornament2"></div>
+                <div class="h2_wrap">
+                    <div class="table_title">
+                        <p class="title">{$lang.display_mode}:</p>
+                        <p class="list_ico" ectype="display_mode" ecvalue="list" title="{$lang.display_by_list}"></p>
+                        <p class="squares_ico" ectype="display_mode" ecvalue="squares" title="{$lang.display_by_item}"></p>
+                        <p class="line_ico"></p>
+                       	<!-- 
+                        <p class="title">{$lang.search}:</p>
+                        <p>
+                        	<select name="condition">
+                        	</select>
+                        </p>
+                       	 -->
+                    </div>
+                    <div class="top_page">
+                        {include file=page.top.html}
+                    </div>
+                </div>
+            </h2>
+
+            <div class="{$display_mode}" ectype="current_display_mode">
+                <!-- {if $goods_list} -->
+                <ul class="list_pic">
+                    <!--{foreach from=$goods_list item=goods}-->
+                    <li>
+                        <p><a href="{url app=goods&act=auction&id=$goods.goods_id&auction_id=$goods.auction_id}" target="_blank"><img src="{$goods.default_image}" /></a></p>
+                        <h3>
+                            <span class="text_link">
+                                <span class="depict">
+                                    <a href="{url app=goods&act=auction&id=$goods.goods_id&auction_id=$goods.auction_id}" target="_blank">{$goods.goods_name|escape}</a>
+                                </span>
+                                <span class="info">
+                                    <span class="fontColor5">{$goods.grade_name|escape}</span>
+                                </span>
+                            </span>
+                            <span class="price">{$goods.curr_price|price}</span>
+                            <b>{$lang.min_price}: {$goods.min_price|price}</b>
+                            <!--  <b><a href="{url app=goods&act=records&goods_id=$goods.goods_id&auction_id=$goods.auction_id}" target="_blank">{$lang.pay_num}:{$goods.pay_num|default:0}</a></b> -->
+                            <b>{$lang.pay_num}:{$goods.pay_num|default:0}</b>
+                            <b><span class="fontColor5">{$goods.time_status}</span></b>
+                        </h3>
+                    </li>
+                    <!--{/foreach}-->
+
+                    <div class="clear"></div>
+                </ul>
+                <!-- {else} -->
+                <div id="no_results">{$lang.no_records}</div>
+                <!-- {/if} -->
+            </div>
+        </div>
+
+        <div class="shop_list_page">
+            {include file=page.bottom.html}
+        </div>
+    </div>
+    <!--{else}-->
+    <div class="module_common">
+        <p class="no_info">{$lang.no_records}</p>
+    </div>
+    <!--{/if}-->
+</div>
+
+{include file=footer.html}

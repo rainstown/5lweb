@@ -1,0 +1,141 @@
+{include file=member.header.html}
+<script type="text/javascript">
+$(function(){
+    $('#funds_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#funds_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#account_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('validate_right').text('OK!');
+        },
+        rules : {
+            money : {
+                required   : true
+            },
+            check_code : {
+                required   : true
+            }
+        },
+        messages : {
+            money  : {
+                required   : '提现金额必填'
+            },
+            check_code : {
+                required   : '验证码必填'
+            }
+        
+        }
+    });
+});
+</script>
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">{include file=member.submenu.html}
+        <div class="wrap">
+            <div class="public_index table">
+                 <form method="post" id="account_form">
+                <table >
+                    <tr class="line tr_bgcolor">
+                        <th class="width2">可提现金额</th>
+                        <td colspan="3"> {$bank_info.money}</td>
+                    </tr>
+                   <tr class="line tr_bgcolor">
+                        <th class="width2">可用银行卡</th>
+                        <td colspan="3">  
+                            <!--{if $auth.bank1_name && $auth.bank1_user && $auth.bank1_account }-->
+                            <input type="radio" name="bank_info" value="1" checked >
+                            {$auth.bank1_name} - {$auth.bank1_user} - {$auth.bank1_account}
+                             <br>
+                            <!--{/if}-->
+                           
+                            <!--{if $auth.bank2_name && $auth.bank2_user && $auth.bank2_account }-->
+                            <input type="radio" name="bank_info" value="2" checked >
+                            {$auth.bank2_name} - {$auth.bank2_user} - {$auth.bank2_account}
+                             <br>
+                            <!--{/if}-->
+                        </td>
+                    </tr>
+                    <!--{if $bank_info.money > 0 && (($auth.bank1_name && $auth.bank1_user && $auth.bank1_account) || ($auth.bank2_name && $auth.bank2_user && $auth.bank2_account)) }-->
+                    <tr class="line tr_bgcolor">
+                        <th class="width2">提现金额</th>
+                        <td><input type="text" class="text width5" name="money" value=""/></td>
+                        <th class="width2">{$lang.check_code}</th>
+                        <td><input type="text" class="text width2" name="check_code" value=""/> <span>{$lang.check_code_funds_out}</span></td>
+                    </tr>
+                  
+                     <tr class="line">
+                         <td colspan ="4" class="scarch_order" style="text-align: center"><input type="submit" class="btn" value="{$lang.submit}" /></td>
+                    </tr>
+                      <!--{/if}-->
+                </table>
+                 </form>
+            </div>
+            <div class="scarch_order">
+            <form method="get">
+                <div style="float:left;">
+                <span class="title">{$lang.name}:</span>
+                <input class="text_normal " type="text" name="funds_name" value="{$query.funds_name|escape}" />
+                <span class="title">{$lang.funds_time}:</span>
+                <input class="text_normal width2" type="text" name="add_time_from" id="funds_time_from" value="{$query.add_time_from}" /> &#8211; <input class="text_normal width2" id="funds_time_to" type="text" name="add_time_to" value="{$query.add_time_to}" />
+                <input type="hidden" name="app" value="account" />
+                <input type="hidden" name="act" value="funds_out" />
+                <input type="submit" class="btn" value="{$lang.search}" />
+                </div>
+                <!--{if $query.funds_name or $query.add_time_from or $query.add_time_to}-->
+                    <a class="detlink" href="{url app=account&act=funds_out}">{$lang.cancel_query}</a>
+                <!--{/if}-->
+
+        </form>
+
+        </div>
+         <div class="public_index table">
+                <table>
+                    <!--{if $pays}-->
+                    <tr class="line tr_bgcolor">
+                        <th>{$lang.order_sn}</th>
+                        <th>{$lang.funds_type}</th>
+                        <th>{$lang.name}</th>
+                        <th>{$lang.funds_time}</th>
+                        <th>{$lang.amount}</th>
+                        <th  class="width10" >{$lang.remark}</th>
+                        <th width="90">{$lang.status}</th>
+                    </tr>
+                    <!--{/if}-->
+                    <!-- 循环开始 -->
+                    <!--{foreach from=$pays item=pay}-->
+                    <tr class="color2 line_bottom">
+                        <td class="align2">{$pay.order_sn}</td>
+                        <td class="align2">{$pay.type|modifier:funds_type}</td>
+                        <td class="align2">{$pay.funds_name|escape}</td>
+                        <td class="align2">{$pay.create_time|date:y-m-d H:i}</td>
+                        <td class="align2 padding1"><span class="color4">{$pay.money|price}</span> </strong></td>
+                        
+                        <td class="align2">{$pay.name|escape}{$pay.remark|escape}</span</td>
+                        <td class="align2"><span class="color4">{$pay.status|modifier:pay_status}</span></td>
+                    </tr>
+                    <!--{foreachelse}-->
+                    <tr><td class="member_no_records" colspan="8">{$lang.no_records}</td></tr>
+                    <!--{/foreach}-->
+                    <!--{if $pays}-->
+                    <tr><th > </th>
+                    <th class="align1" colspan="6">
+                             
+                            <p class="position2">
+                                {include file=member.page.bottom.html}
+                            </p>
+                        </th>
+                    </tr>
+                    <!--{/if}-->
+                    </table>
+                    <iframe name="seller_order" style="display:none;"></iframe>
+        </div>
+    <div class="wrap_bottom"></div>
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+{include file=footer.html}

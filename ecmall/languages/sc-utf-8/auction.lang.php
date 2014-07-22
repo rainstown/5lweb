@@ -1,0 +1,43 @@
+<?php
+return array(
+	'inprocess' => '进行中',
+	'all' => '全部',
+	'applying' => '报名中',
+	'offical_auction_list' => '平台专场拍卖会列表',
+	'personal_auction_list' => '个人拍卖会列表',
+	'apply' => '报名',
+	'auction_not_exists' => '该拍卖会不存在',
+	
+	'auction_name' => '拍卖专场标题',
+	'start_time' => '开始时间',
+	'sign_end_time' => '报名截止时间',
+	'status' => '状态',
+	'description' => '描述',
+	'end_time' => '结束时间',
+	'sign_start_time' => '报名开始时间',
+	'keep_money' => '保证金',
+	'put_money' => '商品上架费用',
+	'trade_money' => '交易费用',
+	'rmb' => '元',
+	'peer_rmb' => '元/每件',
+	'keep_percent_detail' => '买家保证金占商品价格的百分比',
+	'keep_percent' => '买家保证金',
+	
+	'do_not_have_money_to_pay_for_keep_money' => '账户的余额无法支付保证金',
+	'apply_ok' => '报名成功',
+	'display_mode' => '显示',
+	
+	'auction_list' => '拍卖会列表',
+	'goods_list' => '拍卖品列表',
+	'min_price' => '起拍价',
+	'curr_price' => '当前竞价',
+	'pay_num' => '出价数',
+	
+	'goods_not_exist' => '该商品不存在',
+	'auction_goods_not_start' => '该拍卖尚未开始',
+	'auction_goods_out_of_date' => '该拍卖已经结束',
+	'has_no_money_pay_goods' => '账户余额不能支付拍卖品保证金',
+	'pay_ok' => '拍卖成功',
+	'market_auction' => '集市',
+	'already_apply_auction' => '已经报名，不能重复报名',
+);

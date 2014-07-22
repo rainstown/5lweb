@@ -1,0 +1,128 @@
+<script type="text/javascript">
+//<!CDATA[
+$(function(){
+	$('#auction_start_time, #auction_end_time').datepicker({
+		dateFormat : 'yy-mm-dd'
+	});
+    $('#my_auction_form').validate({
+    	/*
+        errorPlacement: function(error, element){
+            var _message_box = $(element).parent().find('.field_message');
+            _message_box.find('.field_notice').hide();
+            _message_box.append(error);
+        },
+        success       : function(label){
+            label.addClass('validate_right').text('OK!');
+        },*/
+        
+        
+        errorLabelContainer: $('#warning'),
+        invalidHandler: function(form, validator) {
+           var errors = validator.numberOfInvalids();
+           if(errors)
+           {
+               $('#warning').show();
+           }
+           else
+           {
+               $('#warning').hide();
+           }
+        },
+        onkeyup : false,
+        rules : {
+            name : {
+                required : true
+            },
+            start_time : {
+                required : true,
+                date   : true
+            },
+            end_time   : {
+                required : true,
+                date: true
+            },
+            keep_percent : {
+                required : true,
+                digits : true,
+                min : 1,
+                max : 100
+            }
+        },
+        messages : {
+            name : {
+                required : '{$lang.auction_name}{$lang.form_required_true}. '
+            },
+            start_time : {
+            	required : '{$lang.start_time}{$lang.form_required_true}',
+            	date : '{$lang.start_time}{$lang.form_date_true}'
+            },
+            end_time : {
+            	required : '{$lang.end_time}{$lang.form_required_true}',
+            	date : '{$lang.end_time}{$lang.form_date_true}'
+            },
+            keep_percent : {
+            	required : '{$lang.keep_percent}{$lang.form_required_true}',
+            	min : '{$lang.keep_percent}{$lang.form_min_1}',
+            	max : '{$lang.keep_percent}{$lang.form_max_100}',
+            	digits : '{$lang.keep_percent}{$lang.form_digits_true}'
+            }
+        }
+    });
+});
+
+//]]>
+</script>
+<ul class="tab">
+    <li class="active">
+    	<!--{if $smarty.get.id}-->
+    	{$lang.auction_edit}
+    	<!--{else}-->
+    	{$lang.auction_add}
+    	<!--{/if}-->
+    </li>
+</ul>
+<div class="eject_con">
+<div class="add">
+    <div id="warning"></div>
+    <form method="post" action="index.php?app=my_auction&act=edit&id={$auction.auction_id}" id="my_auction_form" target="iframe_post">
+    <ul>
+        <li>
+            <h3>{$lang.auction_name}: </h3>
+            <p>
+            	<input type="text" class="text width_normal" name="name" value="{$auction.name|escape}" style="width: 300px;"/>
+            	<label class="field_message"><span class="field_notice"></span></label>
+            </p>
+        </li>
+        <li>
+            <h3>{$lang.start_time}: </h3>
+            <p>
+            	<input type="text" class="text width_normal" name="start_time" value="{$auction.start_time|escape}" id="auction_start_time" />
+            	<label class="field_message"><span class="field_notice">{$lang.start_time_desc}</span></label>
+            </p>
+        </li>
+        <li>
+            <h3>{$lang.end_time}: </h3>
+            <p>
+            	<input type="text" class="text width_normal" name="end_time" value="{$auction.end_time|escape}" id="auction_end_time" />
+            	<label class="field_message"><span class="field_notice"></span></label>
+            </p>
+        </li>
+        <li>
+            <h3>{$lang.keep_percent}(%):</h3>
+            <p>
+            	<input type="text" class="text width_normal"  name="keep_percent" value="{$auction.keep_percent}"/>
+            	<label class="field_message"><span class="field_notice">{$lang.keep_percent_desc}</span></label>
+            </p>
+        </li>
+        <li>
+            <h3>{$lang.description}:</h3>
+            <p>
+            	<textarea name="description" row="36" col="10">{$auction.description}</textarea>
+            	
+            </p>
+        </li>
+    </ul>
+    <div class="submit"><input type="submit" class="btn" value="<!--{if $auction.auction_id }-->{$lang.auction_edit}<!--{else}-->{$lang.auction_add}<!--{/if}-->" /></div>
+    </form>
+</div>
+</div>

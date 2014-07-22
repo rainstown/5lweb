@@ -1,0 +1,66 @@
+{include file="header.html"}
+
+<div id="rightTop">
+	<p>{$lang.market_auction_manage}</p>
+</div>
+
+<div class="mrightTop">
+	<div class="fontl">
+		
+	</div>
+	<div class="fontr">{include file=page.top.html}</div>
+</div>
+<div class="tdare">
+	<table width="100%" cellspacing="0" class="dataTable">
+		<!--{if $auctions}-->
+		<tr class="tatr1">
+			<td width="20" class="firstCell"></td>
+			<td>{$lang.auction_name}</td>
+			<td>{$lang.keep_money}</td>
+			<td>{$lang.put_money}</td>
+			<td>{$lang.trade_money}</td>
+			<td>{$lang.keep_percent}</td>
+			<td>{$lang.not_approved_user}</td>
+			<td>{$lang.auction_user}</td>
+			<td>{$lang.handler}</td>
+		</tr>
+		<!--{/if}-->
+		<!--{foreach from=$auctions item=auction}-->
+		<tr class="tatr2">
+			<td class="firstCell"></td>
+			<td>{$auction.name|escape}</td>
+			<td>{$auction.keep_money|price}</td>
+			<td>{$auction.put_money|price}</td>
+			<td>{$auction.trade_money|price}</td>
+			<td>{$auction.keep_percent}%</td>
+			<td>
+				<!-- {if $auction.apply_user_num gt 0} -->
+				<a href="{url app=auction&act=apply_list&id=$auction.auction_id}">{$auction.apply_user_num}</a>
+				<!-- {/if} -->
+			</td>
+			<td>
+				<a href="{url app=auction&act=user&id=$auction.auction_id}">{$auction.auction_user_num}</a>
+			</td>
+			<td>
+				<!-- {if $auction.apply_user_num} -->
+				<a href="{url app=auction&act=apply_list&id=$auction.auction_id}">{$lang.approve_apply}</a>
+				<!-- {/if} -->
+				<!-- {if $auction.need_back_money} -->
+				<a href="{url app=auction&act=user&id=$auction.auction_id}">{$lang.back_keep_money}</a>
+				<!-- {/if} -->
+			</td>
+		</tr>
+		<!--{foreachelse}-->
+		<tr class="no_data">
+			<td colspan="10">{$lang.no_data}</td>
+		</tr>
+		<!--{/foreach}-->
+	</table>
+	<!--{if $auctions}-->
+	<div id="dataFuncs">
+		<div class="pageLinks">{include file=page.bottom.html}</div>
+		<div class="clear"></div>
+	</div>
+	<!--{/if}-->
+</div>
+{include file="footer.html"}

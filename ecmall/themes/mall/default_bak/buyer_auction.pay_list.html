@@ -1,0 +1,85 @@
+{include file=member.header.html}
+<div class="content">
+	<div class="totline"></div>
+	<div class="botline"></div>
+	{include file=member.menu.html}
+	<div id="right">
+		{include file=member.submenu.html}
+		<div class="wrap">
+			<!-- 
+			<div class="eject_btn_two eject_pos1" title="{$lang.auction_add}">
+				<b class="ico1" ectype="dialog" dialog_title="{$lang.auction_add}" dialog_id="my_auction_edit" dialog_width="600" uri="index.php?app=my_auction&act=edit">{$lang.auction_add}</b>
+			</div>
+			 -->
+			<div class="public_select table">
+				<table id="my_pay_list" server="{$site_url}/index.php?app=my_auction&amp;act=ajax_col">
+					
+					<!--{if $goods_list}-->
+					<tr class="gray" ectype="table_header">
+						<th width="200">
+							<span ectype="order_by">{$lang.goods_name}</span>
+						</th>
+						<th width="100"><span>{$lang.curr_price}</span></th>
+						<th width="100"><span>{$lang.my_price}</span></th>
+						<th width="70"><span>{$lang.pay_num}</span></th>
+						<th width="80"><span>{$lang.end_time}</span></th>
+						<th>{$lang.handle}</th>
+					</tr>
+					<!--{/if}-->
+					<!--{foreach from=$goods_list item=goods name=_goods_f}-->
+					<tr
+						class="line<!--{if $smarty.foreach._goods_f.last}--> last_line<!--{/if}-->"
+						ectype="table_item" idvalue="{$goods.goods_id}">
+						
+						<td width="200">
+							<p class="ware_text">
+								<span class="color2">{$goods.goods_name|escape}</span>
+							</p>
+						</td>
+						<td width="100" class="align2">
+							<span class="color2">{$goods.curr_price|price}</span>
+						</td>
+						<td width="100" class="align2">
+							<span class="color2">{$goods.price|price}</span>
+						</td>
+						<td width="70" class="align2">
+							<span class="color2">{$goods.pay_num}</span>
+						</td>
+						<td width="80" class="align2">
+							<span class="color2">{$goods.end_time}</span>
+						</td>
+						<td width="" class="align2">
+							<a href="{url app=goods&act=auction&id=$goods.goods_id&auction_id=$goods.auction_id}">{$lang.auction_pay}</a>
+						</td>
+					</tr>
+					<!--{foreachelse}-->
+					<tr>
+						<td class="align2 member_no_records padding6" colspan="10">{$lang.$smarty.get.act}{$lang.no_records}</td>
+					</tr>
+					<!--{/foreach}-->
+					<!--{if $goods_list}-->
+					<tr class="line_bold line_bold_bottom">
+						<td colspan="11"></td>
+					</tr>
+					<tr>
+						<th colspan="10">
+							<p class="position2">{include file=member.page.bottom.html}</p>
+						</th>
+					</tr>
+					<!--{/if}-->
+				</table>
+			</div>
+			<div class="wrap_bottom"></div>
+		</div>
+		<div class="clear"></div>
+		<div class="adorn_right1"></div>
+		<div class="adorn_right2"></div>
+		<div class="adorn_right3"></div>
+		<div class="adorn_right4"></div>
+	</div>
+	<div class="clear"></div>
+</div>
+
+
+<iframe name="iframe_post" id="iframe_post" width="0" height="0"></iframe>
+{include file=footer.html} 

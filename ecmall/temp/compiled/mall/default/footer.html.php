@@ -1,0 +1,9 @@
+<div class="clear"/></div>
+<div class="main footer">
+	<span class="fl">三多九如收藏网 (<?php echo $this->_var['icp_number']; ?>)<br>© 2001-2013</span>
+	<span class="fr"><a href="#">广告合作</a> - <a href="#">加入我们</a> - <a href="<?php echo url('app=article&code=help'); ?>">帮助</a> - <a href="#">TOP</a><br>技术支持：<a href="#">标玺</a></span>
+</div>
+</div>
+</body>
+</html>
+

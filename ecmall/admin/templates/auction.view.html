@@ -1,0 +1,95 @@
+{include file="header.html"}
+<div id="rightTop">
+	<p>{$lang.auction}</p>
+	<ul class="subnav">
+		<!-- {if $auction.type == 'P'} -->
+		<li><a class="btn1" href="index.php?app=auction&act=personal">{$lang.manage}</a></li>
+		<!-- {else} -->
+		<li><a class="btn1" href="index.php?app=auction">{$lang.manage}</a></li>
+		<!-- {if $auction.auction_id} -->
+		<li>
+			<a class="btn1" href="index.php?app=auction&amp;act=edit&amp;id={$auction.auction_id}">{$lang.edit}</a> 
+		</li>
+		<!-- {/if} -->
+		<li>
+			<a class="btn1" href="index.php?app=auction&amp;act=edit">{$lang.add}</a>
+		</li> 
+		<!-- {/if} -->
+	</ul>
+</div>
+<div class="info">
+	<form method="post" action="{url app=auction&act=edit&id=$auction.auction_id}" id="auction_form">
+		<input type="hidden" name="auction_id" value="{$auction.auction_id}" />
+		<table class="infoTable">
+			<tr>
+				<th class="paddingT15">{$lang.auction_name}:</th>
+				<td class="paddingT15 wordSpacing5">
+				{$auction.name}
+				</td>
+			</tr>
+			<tr>
+				<th class="paddingT15">{$lang.start_time}:</th>
+				<td class="paddingT15 wordSpacing5">
+					{$auction.start_time}
+				</td>
+			</tr>
+			<tr>
+				<th class="paddingT15">{$lang.end_time}:</th>
+				<td class="paddingT15 wordSpacing5">
+					{$auction.end_time}
+				</td>
+			</tr>
+			<!-- {if $auction.type == 'O'} -->
+			<tr>
+				<th class="paddingT15">{$lang.sign_start_time}:</th>
+				<td class="paddingT15 wordSpacing5">
+					{$auction.sign_start}
+				</td>
+			</tr>
+			<tr>
+				<th class="paddingT15">{$lang.sign_end_time}:</th>
+				<td class="paddingT15 wordSpacing5">
+					{$auction.sign_end}
+				</td>
+			</tr>
+			<!-- {/if} -->
+			<tr>
+				<th class="paddingT15">{$lang.status}:</th>
+				<td class="paddingT15 wordSpacing5">
+					{$auction.status_name}
+				</td>
+			</tr>
+			<tr>
+				<th class="paddingT15">{$lang.keep_money}:</th>
+				<td class="paddingT15 wordSpacing5">
+					{$auction.keep_money}
+				</td>
+			</tr>
+			<tr>
+				<th class="paddingT15">{$lang.put_money}({$lang.peer_rmb}):</th>
+				<td class="paddingT15 wordSpacing5">
+					{$auction.put_money}
+				</td>
+			</tr>
+			<tr>
+				<th class="paddingT15">{$lang.trade_money}({$lang.peer_rmb}):</th>
+				<td class="paddingT15 wordSpacing5">
+					{$auction.trade_money}
+				</td>
+			</tr>
+			<tr>
+				<th class="paddingT15">{$lang.keep_percent}(%):</th>
+				<td class="paddingT15 wordSpacing5">
+					{$auction.keep_percent}
+				</td>
+			</tr>
+			<tr>
+				<th class="paddingT15">{$lang.description}:</th>
+				<td class="paddingT15 wordSpacing5">
+					{$auction.description|nl2br}
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+{include file="footer.html"}

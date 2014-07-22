@@ -1,0 +1,45 @@
+Tue, 20 Aug 2013 12:18:36 +0000	[256]Unkown database type.	\eccore\ecmall.php	555
+Sun, 25 Aug 2013 08:25:39 +0000	[2]Invalid argument supplied for foreach()	\includes\passports\uc.passport.php	514
+Sun, 25 Aug 2013 08:25:51 +0000	[2]Invalid argument supplied for foreach()	\includes\passports\uc.passport.php	514
+Sun, 25 Aug 2013 08:25:57 +0000	[2]Invalid argument supplied for foreach()	\includes\passports\uc.passport.php	514
+Sun, 25 Aug 2013 08:26:03 +0000	[2]Invalid argument supplied for foreach()	\includes\passports\uc.passport.php	514
+Sun, 25 Aug 2013 08:27:42 +0000	[2]Invalid argument supplied for foreach()	\includes\passports\uc.passport.php	514
+Sun, 25 Aug 2013 08:27:44 +0000	[2]Invalid argument supplied for foreach()	\includes\passports\uc.passport.php	514
+Sun, 25 Aug 2013 08:27:53 +0000	[2]Invalid argument supplied for foreach()	\includes\passports\uc.passport.php	514
+Sun, 25 Aug 2013 08:37:03 +0000	[2]Invalid argument supplied for foreach()	\includes\passports\uc.passport.php	514
+Sun, 25 Aug 2013 10:40:05 +0000	[256]MySQL Error[1054]: Unknown column 'store_id' in 'field list'
+MySQL Query:SELECT email, password, real_name, logins, ugrade, portrait, store_id, state, sgrade , feed_config,member.user_id FROM ecm_member member WHERE member.user_id = '2'
+Wrong File:  C:\xampp171\htdocs\ecmall\eccore\model\mysql.php[534]	\eccore\model\mysql.php	286
+Sun, 25 Aug 2013 10:40:19 +0000	[256]MySQL Error[1054]: Unknown column 'store_id' in 'field list'
+MySQL Query:SELECT email, password, real_name, logins, ugrade, portrait, store_id, state, sgrade , feed_config,member.user_id FROM ecm_member member WHERE member.user_id = '2'
+Wrong File:  C:\xampp171\htdocs\ecmall\eccore\model\mysql.php[534]	\eccore\model\mysql.php	286
+Sun, 25 Aug 2013 10:43:32 +0000	[256]MySQL Error[1054]: Unknown column 'sgrade' in 'field list'
+MySQL Query:SELECT email, password, real_name, logins, ugrade, portrait, store_id, state, sgrade , feed_config, group_name,member.user_id FROM ecm_member member LEFT JOIN ecm_groupbuy gb ON member.user_id=gb.store_id WHERE member.user_id = '2'
+Wrong File:  C:\xampp171\htdocs\ecmall\eccore\model\mysql.php[534]	\eccore\model\mysql.php	286
+Sun, 25 Aug 2013 10:43:40 +0000	[256]MySQL Error[1054]: Unknown column 'sgrade' in 'field list'
+MySQL Query:SELECT email, password, real_name, logins, ugrade, portrait, store_id, state, sgrade , feed_config, group_name,member.user_id FROM ecm_member member LEFT JOIN ecm_groupbuy gb ON member.user_id=gb.store_id WHERE member.user_id = '2'
+Wrong File:  C:\xampp171\htdocs\ecmall\eccore\model\mysql.php[534]	\eccore\model\mysql.php	286
+Mon, 26 Aug 2013 13:08:17 +0000	[256]MySQL Error[1054]: Unknown column 'state' in 'field list'
+MySQL Query:UPDATE ecm_member_auth SET auth_id='2',auth_card='22',auth_addr='',bank1_name='',bank1_user='',bank1_account='',bank2_name='',bank2_user='',bank2_account='',state='0',create_time='1377522497' WHERE auth_id = 2
+Wrong File:  C:\xampp171\htdocs\ecmall\eccore\model\model.base.php[522]	\eccore\model\mysql.php	286
+Wed, 28 Aug 2013 13:56:07 +0000	[256]MySQL Error[1054]: Unknown column 'state' in 'where clause'
+MySQL Query:SELECT COUNT(*) as c FROM ecm_member_auth member_auth LEFT JOIN ecm_member member ON member_auth.auth_id = member.user_id WHERE state <> '0'
+Wrong File:  C:\xampp171\htdocs\ecmall\eccore\model\mysql.php[458]	\eccore\model\mysql.php	286
+Wed, 28 Aug 2013 13:57:53 +0000	[256]MySQL Error[1054]: Unknown column 'state' in 'where clause'
+MySQL Query:SELECT COUNT(*) as c FROM ecm_member_auth member_auth LEFT JOIN ecm_member member ON member_auth.auth_id = member.user_id WHERE state <> '0'
+Wrong File:  C:\xampp171\htdocs\ecmall\eccore\model\mysql.php[458]	\eccore\model\mysql.php	286
+Wed, 28 Aug 2013 13:58:56 +0000	[256]MySQL Error[1054]: Unknown column 'state' in 'where clause'
+MySQL Query:SELECT COUNT(*) as c FROM ecm_member_auth member_auth LEFT JOIN ecm_member member ON member_auth.auth_id = member.user_id WHERE state <> '0'
+Wrong File:  C:\xampp171\htdocs\ecmall\eccore\model\mysql.php[458]	\eccore\model\mysql.php	286
+Wed, 28 Aug 2013 14:10:13 +0000	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND auth_state = '0'' at line 1
+MySQL Query:SELECT COUNT(*) as c FROM ecm_member_auth member_auth LEFT JOIN ecm_member member ON member_auth.auth_id = member.user_id WHERE  AND auth_state = '0'
+Wrong File:  C:\xampp171\htdocs\ecmall\eccore\model\mysql.php[458]	\eccore\model\mysql.php	286
+Wed, 28 Aug 2013 14:12:10 +0000	[256]MySQL Error[1054]: Unknown column 'owner_card' in 'order clause'
+MySQL Query:SELECT member_auth.*,member.user_name,member_auth.auth_id FROM ecm_member_auth member_auth LEFT JOIN ecm_member member ON member_auth.auth_id = member.user_id WHERE  1  ORDER BY owner_card asc LIMIT 0,10
+Wrong File:  C:\xampp171\htdocs\ecmall\eccore\model\mysql.php[534]	\eccore\model\mysql.php	286
+Wed, 28 Aug 2013 14:46:31 +0000	[256]MySQL Error[1054]: Unknown column 'state' in 'field list'
+MySQL Query:UPDATE ecm_member_auth SET state='1',add_time='1377701191',sort_order='65535' WHERE auth_id = 2
+Wrong File:  C:\xampp171\htdocs\ecmall\eccore\model\model.base.php[522]	\eccore\model\mysql.php	286
+Wed, 28 Aug 2013 14:49:08 +0000	[256]MySQL Error[1054]: Unknown column 'state' in 'field list'
+MySQL Query:UPDATE ecm_member_auth SET state='1',add_time='1377701348' WHERE auth_id = 2
+Wrong File:  C:\xampp171\htdocs\ecmall\eccore\model\model.base.php[522]	\eccore\model\mysql.php	286

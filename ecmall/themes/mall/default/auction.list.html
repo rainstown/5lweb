@@ -1,0 +1,89 @@
+{include file=header.html}
+{include file=curlocal.html}
+<style type="text/css">
+.auction_selected {font-size:14px; font-weight: bold;}
+.auction_selected a {color: #FF0000;}
+</style>
+<div class="content">
+    <div class="left">
+        <div class="module_sidebar">
+            <h2><b>{$lang.offical_auction_list}</b></h2>
+            <div class="wrap">
+                <div class="wrap_child">
+                    <div class="classify_list">
+                        <ul>
+                            <li {if $smarty.get.type == 'O' and $smarty.get.query == ''}class="auction_selected" {/if}>
+                            	<a href="{url app=auction&act=auction_list&type=O}">{$lang.all}</a>
+                            </li>
+                            <li {if $smarty.get.type == 'O' and $smarty.get.query == 'process'}class="auction_selected" {/if}>
+                            	<a href="{url app=auction&act=auction_list&type=O&query=process}">{$lang.inprocess}</a>
+                            </li>
+                            <li {if $smarty.get.type == 'O' and $smarty.get.query == 'apply'}class="auction_selected" {/if}>
+                            	<a href="{url app=auction&act=auction_list&type=O&query=apply}">{$lang.applying}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h2><b>{$lang.personal_auction_list}</b></h2>
+            <div class="wrap">
+                <div class="wrap_child">
+                    <div class="side_textlist">
+                        <ul>
+                            <li {if $smarty.get.type == 'P'}class="auction_selected" {/if}><a href="{url app=auction&act=auction_list&type=P}">{$lang.all}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <h2><b>{$lang.market_auction}</b></h2>
+            <div class="wrap">
+                <div class="wrap_child">
+                    <div class="side_textlist">
+                        <ul>
+                            <li {if $smarty.get.type == 'M'}class="auction_selected" {/if}><a href="{url app=auction&act=goods_list&id=$market_id}">{$lang.all_goods}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="right">
+        <div class="shop_text_list">
+            <div class="ornament1"></div>
+            <div class="ornament2"></div>
+            <table>
+                <tr>
+                    <th class="align1" colspan="5">
+                        <div class="table_title">
+                        </div>
+                        <div class="top_page">
+                            {include file=page.top2.html}
+                        </div>
+                    </th>
+                </tr>
+                <!-- {foreach from=$auctions item=auction} -->
+                <tr>
+                    <td><a href="{url app=auction&act=goods_list&id=$auction.auction_id}" class="lebioa">{$auction.name|escape}</a></td>
+                    <td>总有<a href="{url app=auction&act=goods_list&id=$auction.auction_id}" style="padding: 0 2px;background: none;" class="width9">{$auction.goods_num}</a>件商品
+                    <td class="width9">总有{$auction.pay_num}出价</td>
+                    <td class="width9">{$auction.create_time}</td>
+                    <td>
+                    	<!--  {if $auction.can_apply} -->
+                    	<a href="{url app=auction&act=apply&id=$auction.auction_id}" style="background: none;color:blue; padding: 0 5px;">{$lang.apply}</a>
+                    	<!-- {/if} -->
+                    </td>
+                </tr>
+                <!-- {foreachelse} -->
+                <tr>
+                  <td align="center" colspan="5">{$lang.no_records}</td>
+                </tr>
+                <!-- {/foreach} -->
+            </table>
+        </div>
+
+        {include file=page.bottom.html}
+    </div>
+</div>
+{include file=footer.html}

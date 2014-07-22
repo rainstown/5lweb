@@ -1,0 +1,84 @@
+{include file=member.header.html}
+<script type="text/javascript">
+$(function(){
+    $('#account_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('validate_right').text('OK!');
+        },
+        rules : {
+            payment_password : {
+                required   : true,
+                minlength  : 6,
+                maxlength  : 20
+            },
+            check_password : {
+                required   : true,
+                equalTo    : '#password'
+            },
+            check_code : {
+                required   : true
+            }
+        },
+        messages : {
+            payment_password  : {
+                required   : '{$lang.payment_password}',
+                minlength  : '输入大于6位的字符'
+            },
+            check_password : {
+                required   : '{$lang.check_password}',
+                equalTo    : '密码必须相等'
+            },
+            check_code : {
+                required   : '{$lang.check_code_error}'
+            }
+        }
+    });
+});
+</script>
+<style>
+.borline td { padding:10px 0px; }
+.ware_list th { text-align:left; }
+.bgwhite { background: #FFFFFF;}
+</style>
+<div class="content">
+    {include file=member.menu.html}
+    <div id="right">
+        {include file=member.submenu.html}
+        <div class="eject_con bgwhite">
+            <div class="add">
+                <form method="post" id="account_form">
+                    <ul>
+                         <li><h3>重置支付密码</h3>
+                        <p> </p>
+                        </li>
+                         
+                        <li><h3>{$lang.payment_password}:</h3>
+                        <p><input class="text width_normal" id="password" type="password" name="payment_password" /></p>
+                        </li>
+                        <li><h3>{$lang.check_password}:</h3>
+                        <p><input class="text width_normal" type="password" name="check_password" /></p>
+                        </li>
+                         <!-- 
+                        <li><h3>{$lang.phone_mob}:</h3>
+                        <p><input class="text width_normal" type="text" name="phone_mob" /> {$lang.phone_mob_desc}</p>
+                        </li>
+                       -->
+                       <li><h3>{$lang.check_code}:</h3>
+                        <p><input type="text" class="text width2" name="check_code" value=""/> <span>{$lang.check_code_pay_pws}</span></p>
+                        </li>
+                        
+                    </ul>
+                    <div class="submit">
+                              <input class="btn" type="submit" value="{$lang.submit}" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+{include file=footer.html}

@@ -1,0 +1,90 @@
+{include file="header.html"}
+<div id="rightTop">
+  <p>{$lang.member_auth}</p>
+  <ul class="subnav">
+  
+    <li><a class="btn1" href="index.php?app=user">{$lang.manage}</a></li>
+    
+    <li><a class="btn1" href="index.php?app=user&amp;act=add">{$lang.add}</a></li>
+   
+    <li><span>{$lang.member_auth}</span></li>
+   
+  </ul>
+</div>
+<div class="mrightTop">
+  <div class="fontl">
+    <form method="get">
+       <div class="left">
+          <input type="hidden" name="app" value="member_auth" />
+          <input type="hidden" name="act" value="index" />
+          <input type="hidden" name="wait_verify" value="{$smarty.get.wait_verify}" />
+          {$lang.auth_name}:
+          <input class="queryInput" type="text" name="auth_name" value="{$smarty.get.auth_name|escape}" />
+          
+          {$lang.auth_state}:
+          <select class="querySelect" name="auth_state">
+            <option value="">{$lang.select_pls}</option>
+            {html_options options=$auth_state selected=$smarty.get.auth_state}
+          </select>
+          <input type="submit" class="formbtn" value="{$lang.query}" />
+      </div>
+      <!--{if $filtered}-->
+      <a class="left formbtn1" href="index.php?app=member_auth<!--{if $smarty.get.wait_verify}-->&amp;wait_verify={$smarty.get.wait_verify}<!--{/if}-->">{$lang.cancel_query}</a>
+      <!--{/if}-->
+    </form>
+  </div>
+  <div class="fontr">{include file=page.top.html} </div>
+</div>
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <!--{if $stores}-->
+    <tr class="tatr1">
+      <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+      <td><span ectype="order_by" fieldname="auth_name">{$lang.auth_name}</span></td>
+      <td><span ectype="order_by" fieldname="auth_card">{$lang.owner_card}</span></td>
+      <td><span ectype="order_by" fieldname="auth_state">{$lang.auth_state}</span></td>
+      <td class="table-center"><span ectype="order_by" fieldname="create_time">{$lang.create_time}</span></td>
+      <td class="handler">{$lang.handler}</td>
+    </tr>
+    <!--{/if}-->
+    <!--{foreach from=$stores item=store}-->
+    <tr class="tatr2">
+      <td class="firstCell"><input type="checkbox" class="checkitem" value="{$store.auth_id}" /></td>
+      
+      <td>{$store.auth_name|escape}</td>
+      <td>{$store.auth_card|escape}</td>
+      <td class="table-center">{$store.state_name}</td>
+      <td class="table-center">{$store.create_time|date}</td>
+      <td class="handler">
+        <!--{if $store.auth_state != 0}-->
+        <a href="index.php?app=member_auth&amp;act=edit&amp;id={$store.auth_id}">{$lang.edit}</a> | <a href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=member_auth&amp;act=drop&amp;id={$store.auth_id}');">{$lang.drop}</a> 
+        <!--{else}-->
+        <a href="index.php?app=member_auth&amp;act=view&amp;id={$store.auth_id}">{$lang.view}</a>
+        <!--{/if}--></td>
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data">
+      <td colspan="12">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+  <!--{if $stores}-->
+  <div id="dataFuncs">
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+    <div id="batchAction" class="left paddingT15">{if !$smarty.get.wait_verify}
+      &nbsp;&nbsp;
+      <input class="formbtn batchButton" style="display: none" type="button" value="{$lang.edit}" name="id" uri="index.php?app=member_auth&act=batch_edit&ret_page={$page_info.curr_page}" />
+      &nbsp;&nbsp;
+      <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=member_auth&act=drop" presubmit="confirm('{$lang.drop_confirm}');" />
+      <!--&nbsp;&nbsp;
+      <input class="formbtn batchButton" type="button" value="{$lang.update_order}" name="id" presubmit="updateOrder(this);" />-->
+      {else}
+      <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=member_auth&act=drop" presubmit="confirm('{$lang.reject_confirm}');" />
+      <!--{/if}-->
+    </div>
+  </div>
+  <div class="clear"></div>
+  <!--{/if}-->
+
+</div>
+{include file="footer.html"}
